@@ -1,0 +1,13 @@
+package com.doctorro.doctor.index.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/doctor/")
+public class IndexController {
+
+    @RequestMapping("index.htm")
+    
+
+}
