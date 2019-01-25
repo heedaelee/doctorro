@@ -1,4 +1,4 @@
-package com.doctorro.doctor;
+package com.doctorro.doctor.join.controller;
 
 /*@Controller
 @RequestMapping("/index/.htm")*/

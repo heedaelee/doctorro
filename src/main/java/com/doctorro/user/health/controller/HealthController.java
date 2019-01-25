@@ -1,4 +1,4 @@
-package com.doctorro.user.controller;
+package com.doctorro.user.health.controller;
 
 /*@Controller
 @RequestMapping("/index/")*/
