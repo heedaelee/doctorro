@@ -28,12 +28,14 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<!-- 매핑 설정 동기.do / 비동기.json  -->
 	<servlet-mapping>
-		<servlet-name>appServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+	<servlet-name>appServlet</servlet-name>
+	<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
 	<!--<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.do</url-pattern>
