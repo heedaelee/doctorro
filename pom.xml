@@ -188,6 +188,32 @@
 			<version>1.2.2</version>
 		</dependency>
 		<!-- mybatis -->
+		<!-- Maria DB -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>2.2.5</version>
+		</dependency>
+		
+		<!--lombok  -->
+		<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>0.10.6</version>
+            <scope>provided</scope>
+        </dependency>
+		<!--jdbc ,tx -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
 		<!-- 인증과 권한처리(security) -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -204,12 +230,15 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>4.0.1.RELEASE</version>
 		</dependency>
-		<!-- 웹소켓 -->
+
+		<!-- WebSocket -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-websocket</artifactId>
-			<version>4.3.1.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
+		<!-- 채팅끝 -->
+
 		<!-- jackson  lib  -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

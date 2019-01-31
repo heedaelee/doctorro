@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -6,17 +8,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no viewport-fit=cover">
 <title>dr.Ro</title>
-<link rel="stylesheet" type="text/css" href="../../../../../webapp/resources/css/normalize.css" />
-<link rel="stylesheet" type="text/css" href="../../../../../webapp/resources/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../../../../../webapp/resources/css/slick.css" />
-<link rel="stylesheet" type="text/css" href="../../../../../webapp/resources/css/base.css" />
-<link rel="stylesheet" type="text/css" href="../../../../../webapp/resources/css/common.css" />
-<script type="text/javascript" src="../../../../../webapp/resources/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="../../../../../webapp/resources/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="../../../../../webapp/resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../../../../webapp/resources/js/validator.min.js"></script>
-<script type="text/javascript" src="../../../../../webapp/resources/js/slick.min.js"></script>
-<script type="text/javascript" src="../../../../../webapp/resources/js/common.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slick.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/base.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/common.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/validator.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/slick.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>

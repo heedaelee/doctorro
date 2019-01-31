@@ -1,26 +1,35 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: adguy
+  Date: 2019-01-29
+  Time: 오전 10:16
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no viewport-fit=cover">
-<title>dr.Ro</title>
-<link rel="stylesheet" type="text/css" href="../../resource/css/normalize.css" />
-<link rel="stylesheet" type="text/css" href="../../resource/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../../resource/css/slick.css" />
-<link rel="stylesheet" type="text/css" href="../../resource/css/base.css" />
-<link rel="stylesheet" type="text/css" href="../../resource/css/common.css" />
-<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="../../resource/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="../../resource/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../resource/js/validator.min.js"></script>
-<script type="text/javascript" src="../../resource/js/slick.min.js"></script>
-<script type="text/javascript" src="../../resource/js/common.js"></script>
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no viewport-fit=cover">
+    <title>dr.Ro</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slick.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/common.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/validator.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/slick.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
@@ -109,28 +118,28 @@
     <!--// footer -->
     <!-- alert -->
     <div class="modal fade modal-center" id="alert_pop">
-    <div class="modal-dialog sm alert_pop">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"></button>
-          <h4 class="modal-title">알림</h4>
-        </div>
-        <div class="modal-body">
-          <div class="modal_con">
-            <p>가입되지 않은 정보입니다.<br/>다시 확인해 주세요</p>
-          </div>
-          <div class="pop_bottom_btn">
-            <!-- 확인버튼 -->
-            <button class="btn w100">확인</button>
+        <div class="modal-dialog sm alert_pop">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title">알림</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal_con">
+                        <p>가입되지 않은 정보입니다.<br/>다시 확인해 주세요</p>
+                    </div>
+                    <div class="pop_bottom_btn">
+                        <!-- 확인버튼 -->
+                        <button class="btn w100" data-dismiss="modal">확인</button>
 
-            <!-- 취소/확인 버튼 -->
-            <!-- <button class="btn" data-dismiss="modal">취소</button>
-            <button class="btn w100">확인</button> -->
-          </div>
+                        <!-- 취소/확인 버튼 -->
+                        <!-- <button class="btn" data-dismiss="modal">취소</button>
+                        <button class="btn w100">확인</button> -->
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
     <!--// alert -->
 </div>
 </body>

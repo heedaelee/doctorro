@@ -21,17 +21,13 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
+	<!-- @Autowired등 설정 잡을때 -->
+	<context:annotation-config />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<!--<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>-->
-	<context:component-scan base-package="com.doctorro.*" />
-	<context:component-scan base-package="com.doctorro" />
+	<context:component-scan base-package="com.doctorro" name-generator="com.doctorro.FullBeanNameGenerator" />
 
 	<!--  Tiles 설정하기 -->
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
@@ -48,6 +44,5 @@
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	</bean>
 	<!--  Tiles 설정 END -->
-
 
 </beans>

@@ -25,7 +25,7 @@ textarea:-webkit-autofill,textarea:-webkit-autofill:hover,textarea:-webkit-autof
 select:-webkit-autofill,select:-webkit-autofill:hover,select:-webkit-autofill:focus{-webkit-box-shadow:0 0 0px 1000px #fff inset;transition:background-color 5000s ease-in-out 0s;}
 input:-webkit-autofill,textarea:-webkit-autofill,select:-webkit-autofill{background:#fff!important}
 textarea:focus,input:focus,select:focus{outline:none;background:#ffffff;border-color:#cdcdcd;}
-textarea::-webkit-input-placeholder{color:#b2b2b2;}
+textarea::-webkit-input-placeholder{color:#cdcdcd;}
 textarea:-moz-placeholder{color:#b2b2b2;}
 textarea::-moz-placeholder{color:#b2b2b2;}
 textarea:-ms-input-placeholder{color:#b2b2b2;}
@@ -38,6 +38,8 @@ button::-moz-focus-inner{border:0;padding:0;}
 .clearfix:after{display:table;clear:both;content:'';overflow:hidden;visibility:hidden;height:0;width:0;}
 .w100{width: 100% !important}
 .text-aqua{color: #20d4da !important}
+.pd0{padding: 0 !important}
+/*.font_num{font-family: 'Roboto', sans-serif ;}*/
 
 /*bootstrap css reset*/
 .row{margin:0}

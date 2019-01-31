@@ -44,9 +44,8 @@
     <div class="container">
         <div class="contents">
 
-            <%--일단 보류--%>
             <%--content include--%>
-            <%--<tiles:insertAttribute name="content" />--%>
+            <tiles:insertAttribute name="content" />
             <%--//content include--%>
 
             <div class="title_box hidden-xs">
