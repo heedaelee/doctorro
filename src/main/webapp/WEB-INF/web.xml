@@ -13,8 +13,12 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
-	
-	<!-- 컨테이너 로더 -->
+    <context-param>
+        <param-name/>
+        <param-value/>
+    </context-param>
+
+    <!-- 컨테이너 로더 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>

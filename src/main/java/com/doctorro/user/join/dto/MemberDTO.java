@@ -22,5 +22,4 @@ public class MemberDTO {
     private String m_mPush;
     private String m_mMail;
     private String m_point;
-
 }
