@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doctorro.user.join.dao.JoinDao">
+
+    <select id="nickCheck" parameterType="String" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+		FROM user
+		where m_nick = #{m_nick}
+    </select>
+
+    <select id="emailCheck" parameterType="String" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+		FROM user
+		where m_email = #{m_email}
+    </select>
+
+    <insert id="insertUser" parameterType="com.doctorro.user.join.dto.MemberDTO">
+      insert into user (m_email, m_pwd, m_nick, m_enable,m_img,m_regdate,m_gender,m_mPush,m_mMail,so_code)
+      values(#{m_email},#{m_pwd},#{m_nick},'1',#{m_img},NOW(),#{m_gender},#{m_mPush},#{m_mMail},#{so_code})
+  	</insert>
+  	
+  	<insert id="insertRole" parameterType="int">
+      insert into member_role (roll_code, m_email)
+      values(1,#{m_email})
+  	</insert>
+
+</mapper>

@@ -20,6 +20,9 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slick.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/base.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/common.css" />
+    <!--네이버 로그인 추가  -->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <!--네이버 로그인 추가 종료  -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
@@ -59,13 +62,13 @@
                         <strong class="form_title">이메일</strong>
                         <div class="form-group">
                             <label for="" class="sr-only">이메일</label>
-                            <input class="form-control" type="email" name="userEmail" value="" placeholder="수신 가능한 이메일을 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
+                            <input class="form-control" type="email" name="m_email" value="" placeholder="수신 가능한 이메일을 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <strong class="form_title">비밀번호</strong>
                         <div class="form-group">
                             <label for="" class="sr-only">비밀번호</label>
-                            <input class="form-control" type="password" name="userPassword" value="" id="userPassword" data-minlength="6" placeholder="비밀번호를 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
+                            <input class="form-control" type="password" name="m_pwd" value="" id="userPassword" data-minlength="6" placeholder="비밀번호를 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group check_box">
@@ -90,7 +93,17 @@
                     <strong>SNS 계정 로그인</strong>
                     <div class="sns_login">
                         <a href="" class="btn btn_kakao">카카오톡으로 로그인</a>
-                        <a href="" class="btn btn_naver">네이버로 로그인</a>
+                        <a href="${naverAuthUrl}" class="btn btn_naver" id="naver_id_login">네이버로 로그인</a>
+                        <!-- //네이버아이디로로그인 버튼 노출 영역 보류 -->
+						  <!-- <script type="text/javascript">
+						  	var naver_id_login = new naver_id_login("sLKp6zrzm0kadWwbPdE0", "http://localhost:8080/doctorro/user/naver");
+						  	var state = naver_id_login.getUniqState();
+						  	naver_id_login.setButton("white", 2,40);
+						  	naver_id_login.setDomain("http://localhost:8080/doctorro/user/login");
+						  	naver_id_login.setState(state);
+						  	naver_id_login.setPopup();
+						  	naver_id_login.init_naver_id_login();
+						  </script> -->
                         <a href="" class="btn btn_google">구글로 로그인</a>
                     </div>
                 </div>

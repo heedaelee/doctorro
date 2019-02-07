@@ -5,7 +5,10 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
 	 <definition name="index.html" template="/index.html" />
+	 <definition name="login" template="/login" />
+	 <!--로그인 페이지로 가기  -->
      <definition name="*.login" template="/WEB-INF/views/{1}/utility/login.jsp" />
+     <!--회원가입 페이지로 가기  -->
      <definition name="*.join" template="/WEB-INF/views/{1}/utility/join.jsp" />
      <definition name="*.*.*" template="/WEB-INF/views/{1}/includes/layout.jsp" >
      	 <put-attribute name="header"  value="/WEB-INF/views/{1}/includes/header.jsp" />

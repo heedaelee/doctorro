@@ -32,12 +32,12 @@ $(document).ready(function(){
 var pwdRule=/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/; 
 $('#submit').click(function () {
 	console.log('제출');
-    if($('#m_nick').val() === "" || $('#m_nick').val().length>10 ){
+    if($('#m_nick').val().trim() === "" || $('#m_nick').val().length>10 ){
         $('#alertmsg').text('닉네임 형식이 바르지 않습니다');
         $('#alert_pop').modal();
         $('#m_nick').focus();
         return false;
-    }else if(!pwdRule.test($('#m_pwd').val())){
+    }else if(!pwdRule.test($('#m_pwd').val().trim())){
     	console.log($('#m_pwd').val());
         $('#alertmsg').text('패스워드 형식이 바르지 않습니다');
         $('#alert_pop').modal();
@@ -55,28 +55,65 @@ $('#submit').click(function () {
     	var formData = new FormData(form);
     	$.ajax({
 			type:"post",
-			url:"joinus/join.htm",
+			url:"",
 			data:formData,
 			processData: false,
             contentType: false,
 			success:function(data){ //{"result":""}
 			console.log(data);
 				if(data=="success"){
-					$('.pwcheck1').empty();
-					$('.pwcheck').empty();
-					swal("회원가입성공.","", "success");
-				}else{
-					swal("회원가입실패.","", "warning");								
+                    $('#alertmsg').text('회원가입이 완료되었습니다.');
+                    $('#alertmsg + p').empty();
+                    $('#alert_pop').modal();
+                    $('#m_pwd').val("");
+                    $('#m_pwd2').val("");
+                    return false;
 				}
+                if(data=="DoubleNick"){
+                    $('#alertmsg').text('이미 닉네임이 있습니다.');
+                    $('#alert_pop').modal();
+                    $('#m_nick').focus();
+                    $('#m_pwd').val("");
+                    $('#m_pwd2').val("");
+                    return false;
+                }
+                if(data=="DoubleEmail"){
+                    $('#alertmsg').text('이미 이메일이 있습니다.');
+                    $('#alert_pop').modal();
+                    $('#m_email').focus();
+                    $('#m_pwd').val("");
+                    $('#m_pwd2').val("");
+                    return false;
+                }
+				else{
+                    $('#alertmsg').text('회원가입에 실패하였습니다');
+                    $('#alert_pop').modal();
+                    $('#m_nick').focus();
+                    $('#m_pwd').val("");
+                    $('#m_pwd2').val("");
+                    return false;
+                	}
             	},
             error : function(error) {
-               swal("실패하였습니다.","","warning");
+                $('#alertmsg').text('회원가입에 실패하였습니다');
+                $('#alert_pop').modal();
+                $('#m_nick').focus();
+                $('#m_pwd').val("");
+                $('#m_pwd2').val("");
                console.log(error);
                console.log(error.status);
             }
 		})
+		
     }
     })
+    $('#alert_pop').click(function(){
+   		if($('#alertmsg').text()==='회원가입이 완료되었습니다.'){
+   			window.location.href="login";
+   			}
+    }
+	)
+    
 })
 </script>
 
@@ -120,7 +157,7 @@ $('#submit').click(function () {
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="label_txt must">비밀번호 확인</label>
-                    <input class="form-control" type="password" id="passwordConfirm" placeholder="영문자 및 숫자 포함 8자 이상" data-match="#m_pwd" data-match-error="비밀번호가 일치하지 않습니다.다시확인해 주세요.">
+                    <input class="form-control" type="password" id="m_pwd2" placeholder="영문자 및 숫자 포함 8자 이상" data-match="#m_pwd" data-match-error="비밀번호가 일치하지 않습니다.다시확인해 주세요.">
                     <div class="help-block with-errors"></div>
                 </div>
                 <div class="agree_chk">
@@ -145,28 +182,28 @@ $('#submit').click(function () {
                         <a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html#">자세히 보기</a>
                     </div>
                     <div class="form-group check_box">
-                        <input class="form-control checkSel" type="checkbox" id="check04">
+                        <input class="form-control checkSel" type="checkbox" id="check04" >
                         <label for="check04" class="">마케팅 활용에 동의합니다.</label>
                         <a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html#">자세히 보기</a>
                     </div>
                     <div class="form-group check_box">
-                        <input class="form-control checkSel" type="checkbox" id="check05">
+                        <input class="form-control checkSel" type="checkbox" id="check05" >
                         <label for="check05" class="">마케팅 정보 수신(선택)</label>
                         <a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html#">자세히 보기</a>
                     </div>
                 </div>
                 <div class="form-inline text-right">
                     <div class="form-group check_box">
-                        <input class="form-control" name="m_mPush" type="checkbox" id="check06">
+                        <input class="form-control" name="m_mPush" type="checkbox" id="check06" name="m_mPush" value="Y">
                         <label for="check06"  class="">푸시</label>
                     </div>
                     <div class="form-group check_box">
-                        <input class="form-control" type="checkbox" name="m_mMail" id="check07">
+                        <input class="form-control" type="checkbox" name="m_mMail" id="check07" name="m_mMail" value="Y">
                         <label for="check07" class="">이메일</label>
                     </div>
                 </div>
                 <div class="bottom_btn">
-                    <button type="submit" id="submit" class="btn btn_aqua"  >회원가입 완료</button>
+                    <button type="button" id="submit" class="btn btn_aqua"  >회원가입 완료</button>
                 </div>
             </form>
         </div>
@@ -204,7 +241,7 @@ $('#submit').click(function () {
                     </div>
                     <div class="pop_bottom_btn">
                         <!-- 확인버튼 -->
-                        <button class="btn w100" data-dismiss="modal">확인</button>
+                        <button class="btn w100" data-dismiss="modal" id="okay">확인</button>
 
                         <!-- 취소/확인 버튼 -->
                         <!-- <button class="btn" data-dismiss="modal">취소</button>
