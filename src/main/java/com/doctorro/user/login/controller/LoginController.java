@@ -1,5 +1,8 @@
 package com.doctorro.user.login.controller;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.View;
 
 import com.doctorro.user.join.dto.MemberDTO;
 import com.doctorro.user.join.service.JoinService;
+import com.doctorro.user.login.service.LoginService;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 
@@ -20,12 +24,16 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 @RequestMapping(value = "/user/")
 public class LoginController {
 	
+	
 	// 비동기
     @Autowired
     private View jsonview;
 
     @Autowired
     private JoinService service;
+    
+    @Autowired
+    private LoginService loginService;
     
     @Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -42,6 +50,7 @@ public class LoginController {
   //2.DB에 email check 후 없으면 insert 있으면 security 설정의 form-login URL로 던지기. ex)login (no .htm)  
     @RequestMapping(value = "naverOauth", method= RequestMethod.GET)
     public String naverSignup(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws Exception {
+    	System.out.println("네이버 콜백 받음");
         OAuth2AccessToken oauthToken= NaverLogin.getAccessToken(session, code, state);
         
         //로그인 사용자 정보를 읽어온다.
@@ -57,12 +66,43 @@ public class LoginController {
         	//자바에서 url:login(security)으로 m_pwd send하기
         	model.addAttribute("m_email", member.getM_email());
         	model.addAttribute("m_pwd", member.getM_pwd());
-        	return "login";
+        	return "sociallogin";
         }
         //회원가입 절차 (if not)
         //소셜 로그인일땐 패스워드 res.id나 네이버 제공 id를 패스워드 인코딩화 해서 insert
         service.insertUser(member);
+        System.out.println("네이버 회원 가입:"+member.toString());
         return "user.index.index";
+    }
+    
+    /* from:login.jsp
+     * 하는일 :로그인 email, pwd체크
+     * 파라미터:m_email,m_pwd -비동기
+     * return : 성공:success, 아이디 x:idfail, 패스x:passfail 
+     */
+    @RequestMapping("logincheck")
+    public View logincheck(HttpServletRequest request,MemberDTO member, Model model) throws Exception {
+    	System.out.println("로그인체크 탐");
+    	String result="";
+    	int emailResult=0;
+    	//e메일체크
+    	emailResult=service.emailCheck(member.getM_email());
+    	if(emailResult==0) {
+    		model.addAttribute("result","idfail");
+    		return jsonview;
+    	}
+    	else {
+    		//pwd체크
+    		System.out.println("pwd체크 탐");
+    		result = loginService.getPass(member);
+    		boolean re = bCryptPasswordEncoder.matches(member.getM_pwd(), result);
+    		if(re) {
+    			model.addAttribute("result","success");
+    		}else {
+    			model.addAttribute("result","passfail");
+    		}
+    		return jsonview;
+    	}
     }
     
     

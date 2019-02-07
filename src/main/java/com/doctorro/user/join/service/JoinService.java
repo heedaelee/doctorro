@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.doctorro.user.join.dto.MemberDTO;
 
 
+
 @Service
 public class JoinService {
 
@@ -55,4 +56,5 @@ public class JoinService {
 		}
 		return result;
 	}
+	
 }

@@ -9,7 +9,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +33,48 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
+<script>
+$(document).ready(function() {
+		/*로그인처리*/
+		$('#login').click(function() {
+			$.ajax({ /*ajax 경로 문제  */
+				type : 'post',
+				url : '/doctor',
+				data : {
+					"m_Email" : $('#m_email').val().trim(),
+					"m_pwd" : $('#m_pwd').val().trim()},
+				success : function(data) {
+					console.log(data)
+					if (data == "idfail") {
+						alert('로그인실패')
+						
+						/* location.href = "index.htm?error=id"; */} 
+					if (data == "passfail") {
+						alert('로그인실패')
+						/* location.href = "index.htm?error=pass"; */} 
+					else {
+						$.ajax({
+							type : 'post',
+							url : '/login',
+							data : {
+								"m_email" : $('#m_email').val().trim(),
+								"m_pwd" : $('#m_pwd').val().trim()},
+							success : function(data) {
+								console.log(data.result);
+								if (data == "success") {
+									alert('로그인성공')
+									/* location.href = "index.htm"; */
+								} 
+							}
+						})
+					}//else 끝
+				}
+			})//ajax끝
+		})/*로그인처리 끝*/
+		
+		
+	})
+</script>
 <body>
 <div class="util_wrap">
     <!-- header web -->
@@ -68,7 +108,7 @@
                         <strong class="form_title">비밀번호</strong>
                         <div class="form-group">
                             <label for="" class="sr-only">비밀번호</label>
-                            <input class="form-control" type="password" name="m_pwd" value="" id="userPassword" data-minlength="6" placeholder="비밀번호를 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
+                            <input class="form-control" type="password" name="m_pwd" value="" id="m_pwd" data-minlength="6" placeholder="비밀번호를 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group check_box">
@@ -79,7 +119,7 @@
                         </div>
                     </div>
                     <div class="bottom_btn">
-                        <button class="btn btn_aqua" data-target="#alert_pop" data-toggle="modal">로그인</button>
+                        <button class="btn btn_aqua" id="login" data-target="#alert_pop" data-toggle="modal">로그인</button>
                     </div>
                     <div class="link_text">
                         <a href="membership.html">회원가입</a>

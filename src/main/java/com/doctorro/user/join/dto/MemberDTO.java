@@ -16,7 +16,7 @@ public class MemberDTO {
     private String m_pwd;
     @NotNull @Size(max=10)
     private String m_nick;
-    private String m_enable;
+    private String m_enabled;
     private String m_img;
     private String m_regdate;
     private String m_gender;

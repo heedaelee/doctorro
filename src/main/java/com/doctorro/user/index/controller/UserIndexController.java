@@ -28,7 +28,7 @@ public class UserIndexController {
     	if(principal!=null) {
 			request.getSession().setAttribute("m_email",principal.getName());				
 			MemberDTO dto = new MemberDTO();
-			System.out.println("principal 받아 session에 입력한 email :"+request.getSession().getAttribute("m_email"));
+			System.out.println("로그인 후 정보 받기 : principal 받아 session에 입력한 email :"+request.getSession().getAttribute("m_email"));
 			dto = service.getUser(principal.getName());
 			model.addAttribute("dto", dto);
 			//model.addAttribute("social", "no");

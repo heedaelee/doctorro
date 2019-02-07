@@ -45,16 +45,9 @@
 
     <!-- container -->
     <div class="container">
-        <div class="contents" style=";background: #ff00ff">
-            <%--일단 보류--%>
-            <%--content include--%>
-            <%--<tiles:insertAttribute name="content" />--%>
+  		  <%--content include--%>
+            <tiles:insertAttribute name="content" />
             <%--//content include--%>
-            <div class="title_box hidden-xs">
-                <h3 class="title">메인페이지</h3>
-            </div>
-            sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>
-        </div>
     </div>
     <!--// container -->
 
