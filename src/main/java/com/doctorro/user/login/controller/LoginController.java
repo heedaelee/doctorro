@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 
 import com.doctorro.user.join.dto.MemberDTO;
@@ -23,7 +24,6 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 @Controller
 @RequestMapping(value = "/user/")
 public class LoginController {
-	
 	
 	// 비동기
     @Autowired
@@ -81,29 +81,45 @@ public class LoginController {
      * return : 성공:success, 아이디 x:idfail, 패스x:passfail 
      */
     @RequestMapping("logincheck")
-    public View logincheck(HttpServletRequest request,MemberDTO member, Model model) throws Exception {
+    public @ResponseBody String logincheck(HttpServletRequest request,MemberDTO member, Model model) throws Exception {
     	System.out.println("로그인체크 탐");
     	String result="";
     	int emailResult=0;
     	//e메일체크
     	emailResult=service.emailCheck(member.getM_email());
+    	System.out.println("메일체크한 갯수 : "+emailResult);
     	if(emailResult==0) {
-    		model.addAttribute("result","idfail");
-    		return jsonview;
+    		/*model.addAttribute("result","idfail");*/
+    		System.out.println(model.toString());
+    		result="idfail";
+    		System.out.println("result 값"+result);
+    		return result;
     	}
     	else {
     		//pwd체크
     		System.out.println("pwd체크 탐");
     		result = loginService.getPass(member);
     		boolean re = bCryptPasswordEncoder.matches(member.getM_pwd(), result);
+    		System.out.println("pwd체크 일치여부 :"+re);
     		if(re) {
-    			model.addAttribute("result","success");
+    			/*model.addAttribute("result","success");*/
+    			result="success";
     		}else {
-    			model.addAttribute("result","passfail");
+    			/*model.addAttribute("result","passfail");*/
+    			result="passfail";
     		}
-    		return jsonview;
+    		System.out.println("result 값"+result);
+    		return result;
     	}
     }
+    
+    @RequestMapping("test")
+    public View test(String test, Model model) {
+    	System.out.println("테스트 성공");
+    	model.addAttribute("data", "data");
+    	return jsonview;
+    }
+    		
     
     
     /* 트러블메이커 방식 일단 보류

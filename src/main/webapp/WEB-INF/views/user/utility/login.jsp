@@ -35,44 +35,119 @@
 </head>
 <script>
 $(document).ready(function() {
-		/*로그인처리*/
-		$('#login').click(function() {
-			$.ajax({ /*ajax 경로 문제  */
+	 console.log('${pageContext.request.contextPath}dd');
+	//테스트
+	/* $('#google').click(function() {
+		alert('버튼클릭');
+		$.ajax({ 
+			type : 'post',
+			url : '/doctorro/user/test', //현재페이지가 /user/login -> 원하는건 /user/test 2. user/test 3.${pageContext.request.contextPath}/user/login
+			data : {"m_email" : $('#m_email').val(),
+				"m_pwd" : $('#m_pwd').val()},
+			success : function(data){
+				alert("success");
+				},
+			error : function(error){
+				alert('fail');				
+			}	
+			})
+	})  */
+	
+	 $('#login').click(function() {
+		 event.preventDefault()
+		 alert('아뒤'+$('#m_email').val() + '\n'+ '비번'+$('#m_pwd').val());
+		 
+		$.ajax({
+			type:'post',
+			url : '${pageContext.request.contextPath}/user/logincheck',
+			data : {
+				"m_email" : $('#m_email').val(),
+				"m_pwd" : $('#m_pwd').val()
+					},
+				success : function(data) {
+					if (data == "success") {
+						$.ajax({
+							type : 'post',
+							url : '${pageContext.request.contextPath}/login',
+							data : {
+								"m_email" : $('#m_email').val(),
+								"m_pwd" : $('#m_pwd').val()
+								},
+							success : function() {
+									location.href = "${pageContext.request.contextPath}/user/index"; 
+								} 
+							})
+						}
+					 if (data == "idfail") {
+						$('#alertmsg').text('아이디가 존재하지 않습니다.');
+						$('#m_pwd').val("");
+	                    $('#alert_pop').modal();
+						/* location.href = "login?error=id"; */ 
+						} 
+					if (data == "passfail") {
+						$('#alertmsg').text('비밀번호가 맞지 않습니다.');
+						$('#m_pwd').val("");
+						$('#alert_pop').modal();
+						/* location.href = "login?error=pass"; */ 
+						}  
+				},
+				error : function(error) {
+					$('#alertmsg').text('로그인에 실패하였습니다.');
+	                $('#alert_pop').modal();
+		             console.log(error);
+		             console.log(error.status);
+		          }
+			
+		})
+	})
+	$('#alert_pop').click(function(){
+		if($('#alertmsg').text()=='아이디가 존재하지 않습니다.'||$('#alertmsg').text()=='로그인에 실패하였습니다.'){
+   			window.location.href="login";
+   			}
+    }
+)
+	
+	
+		 //로그인처리
+		/* $('#login').click(function() {
+			alert('${pageContext.request.contextPath}/user/logincheck');
+			// ajax 경로 문제
+			$.ajax({ 
 				type : 'post',
-				url : '/doctor',
+				url : '${pageContext.request.contextPath}/user/logincheck',
 				data : {
-					"m_Email" : $('#m_email').val().trim(),
-					"m_pwd" : $('#m_pwd').val().trim()},
+					"m_email" : $('#m_email').val().trim(),
+					"m_pwd" : $('#m_pwd').val().trim()
+						},
 				success : function(data) {
 					console.log(data)
 					if (data == "idfail") {
-						alert('로그인실패')
-						
-						/* location.href = "index.htm?error=id"; */} 
+						alert('로그인실패');
+						// location.href = "index.htm?error=id"; 
+						} 
 					if (data == "passfail") {
-						alert('로그인실패')
-						/* location.href = "index.htm?error=pass"; */} 
+						alert('로그인실패');
+						// location.href = "index.htm?error=pass"; 
+						} 
 					else {
 						$.ajax({
 							type : 'post',
-							url : '/login',
+							url : '${pageContext.request.contextPath}/login',
 							data : {
 								"m_email" : $('#m_email').val().trim(),
 								"m_pwd" : $('#m_pwd').val().trim()},
 							success : function(data) {
 								console.log(data.result);
-								if (data == "success") {
+								if (data.result == "success") {
 									alert('로그인성공')
-									/* location.href = "index.htm"; */
+									// location.href = "index.htm"; 
 								} 
 							}
 						})
 					}//else 끝
 				}
 			})//ajax끝
-		})/*로그인처리 끝*/
-		
-		
+		})//로그인처리 끝 */
 	})
 </script>
 <body>
@@ -97,18 +172,18 @@ $(document).ready(function() {
                 <h3 class="title">로그인</h3>
             </div>
             <div class="login_form">
-                <form data-toggle="validator" role="form">
+                <form method="post" data-toggle="validator" role="form" >
                     <div class="">
                         <strong class="form_title">이메일</strong>
                         <div class="form-group">
                             <label for="" class="sr-only">이메일</label>
-                            <input class="form-control" type="email" name="m_email" value="" placeholder="수신 가능한 이메일을 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
+                            <input class="form-control" type="email" id="m_email" name="m_email"  placeholder="수신 가능한 이메일을 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <strong class="form_title">비밀번호</strong>
                         <div class="form-group">
                             <label for="" class="sr-only">비밀번호</label>
-                            <input class="form-control" type="password" name="m_pwd" value="" id="m_pwd" data-minlength="6" placeholder="비밀번호를 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
+                            <input class="form-control" type="password" name="m_pwd"  id="m_pwd" data-minlength="8" placeholder="비밀번호를 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group check_box">
@@ -119,14 +194,14 @@ $(document).ready(function() {
                         </div>
                     </div>
                     <div class="bottom_btn">
-                        <button class="btn btn_aqua" id="login" data-target="#alert_pop" data-toggle="modal">로그인</button>
+                        <button class="btn btn_aqua" id="login" >로그인</button>
                     </div>
                     <div class="link_text">
-                        <a href="membership.html">회원가입</a>
+                        <a href="${pageContext.request.contextPath}/user/join">회원가입</a>
                         <span>|</span>
                         <a href="search_id.html">비밀번호 찾기</a>
                     </div>
-                </form>
+                </form> 
             </div>
             <div class="sns_wrap">
                 <div class="sns_inner">
@@ -144,7 +219,7 @@ $(document).ready(function() {
 						  	naver_id_login.setPopup();
 						  	naver_id_login.init_naver_id_login();
 						  </script> -->
-                        <a href="" class="btn btn_google">구글로 로그인</a>
+                        <a href="" class="btn btn_google" id="google">구글로 로그인</a>
                     </div>
                 </div>
             </div>
@@ -169,7 +244,7 @@ $(document).ready(function() {
         </ul>
     </footer>
     <!--// footer -->
-    <!-- alert -->
+   <!-- alert -->
     <div class="modal fade modal-center" id="alert_pop">
         <div class="modal-dialog sm alert_pop">
             <div class="modal-content">
@@ -179,11 +254,12 @@ $(document).ready(function() {
                 </div>
                 <div class="modal-body">
                     <div class="modal_con">
-                        <p>가입되지 않은 정보입니다.<br/>다시 확인해 주세요</p>
+                        <p id="alertmsg">가입되지 않은 정보입니다.</p>
+                        <p>다시 확인해 주세요</p>
                     </div>
                     <div class="pop_bottom_btn">
                         <!-- 확인버튼 -->
-                        <button class="btn w100" data-dismiss="modal">확인</button>
+                        <button class="btn w100" data-dismiss="modal" id="okay">확인</button>
 
                         <!-- 취소/확인 버튼 -->
                         <!-- <button class="btn" data-dismiss="modal">취소</button>

@@ -32,12 +32,12 @@ $(document).ready(function(){
 var pwdRule=/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/; 
 $('#submit').click(function () {
 	console.log('제출');
-    if($('#m_nick').val().trim() === "" || $('#m_nick').val().length>10 ){
+    if($('#m_nick').val() === "" || $('#m_nick').val().length>10 ){
         $('#alertmsg').text('닉네임 형식이 바르지 않습니다');
         $('#alert_pop').modal();
         $('#m_nick').focus();
         return false;
-    }else if(!pwdRule.test($('#m_pwd').val().trim())){
+    }else if(!pwdRule.test($('#m_pwd').val())){
     	console.log($('#m_pwd').val());
         $('#alertmsg').text('패스워드 형식이 바르지 않습니다');
         $('#alert_pop').modal();
@@ -112,7 +112,7 @@ $('#submit').click(function () {
    			window.location.href="login";
    			}
     }
-	)
+)
     
 })
 </script>
