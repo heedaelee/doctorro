@@ -56,13 +56,11 @@ public class LoginController {
         //로그인 사용자 정보를 읽어온다.
         String profile = NaverLogin.getUserProfile(oauthToken);
         MemberDTO member = NaverLogin.changeData(profile);
-        //네이버 주는 id키 값 -> 비번 암호화
-		member.setM_pwd(bCryptPasswordEncoder.encode(member.getM_pwd()));
         
         int result=0;
         result = service.emailCheck(member.getM_email());
         if(result>0) {
-        	//로그인 절차 (if have ID in DB)
+        	//로그인 절차 (DB에 아이디 있으면..)
         	//자바에서 url:login(security)으로 m_pwd send하기
         	model.addAttribute("m_email", member.getM_email());
         	model.addAttribute("m_pwd", member.getM_pwd());
@@ -70,6 +68,8 @@ public class LoginController {
         }
         //회원가입 절차 (if not)
         //소셜 로그인일땐 패스워드 res.id나 네이버 제공 id를 패스워드 인코딩화 해서 insert
+        //네이버 주는 id키 값 -> 비번 암호화
+      		member.setM_pwd(bCryptPasswordEncoder.encode(member.getM_pwd()));
         service.insertUser(member);
         System.out.println("네이버 회원 가입:"+member.toString());
         return "user.index.index";

@@ -116,14 +116,25 @@ public class NaverLogin {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode properties = mapper.readTree(profile);
 		JsonNode response = properties.get("response");
-		if (response.has("id"))
+		if (response.has("id")) {
 			member.setSo_code(2); // 일반회원 :1, 네이버:2, 카카오:3, 구글:4
 			member.setM_email(response.get("email").asText());
 			member.setM_pwd(response.get("id").asText());
-		
-		/* 일단 보류
-		 * 	member.setM_nick(response.get("nickname").asText());
-			member.setM_img(response.get("profile_image").asText());*/
+			if(response.hasNonNull("nickname")) {
+				member.setM_nick(response.get("nickname").asText());
+			}
+			if(response.hasNonNull("profile_image")) {
+				member.setM_img(response.get("profile_image").asText());
+			}
+			/* age (10-20)일단 보류
+			 * if(response.hasNonNull("age")) {
+				member.setM_nick(response.get("age").asText());
+			}*/
+			/* name (이희대)일단 보류
+			 * if(response.hasNonNull("name")) {
+				member.setM_nick(response.get("age").asText());
+			}*/
+		}
 		return member;
 	}
 
