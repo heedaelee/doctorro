@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	 xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context.xsd
+  						http://www.springframework.org/schema/security 
+  						http://www.springframework.org/schema/security/spring-security.xsd">
+
+<context:component-scan base-package="com.doctorro.*" name-generator="com.doctorro.FullBeanNameGenerator" />
+	<!-- 로그인 -->
+	<security:http>
+	<security:csrf disabled="true" />
+	<security:form-login login-page="/login"
+	    authentication-failure-url="/user/login?error=security"
+	    always-use-default-target="true"
+	    default-target-url="/user/index"
+		username-parameter="m_email"
+		password-parameter="m_pwd" />
+	<security:session-management invalid-session-url="/user/index" >
+		<security:concurrency-control max-sessions="1" expired-url="/user/index"/>
+	</security:session-management>
+	<security:logout logout-success-url="/user/index" />
+	
+	<!--일단 보류
+	<security:intercept-url pattern="/mypage.htm" access="hasRole('ROLE_USER')" />
+	<security:intercept-url pattern="/visited.htm" access="hasRole('ROLE_USER')" />
+	<security:intercept-url pattern="/travelreport.htm" access="hasRole('ROLE_ADMIN')" />
+	-->
+	
+</security:http>
+<security:authentication-manager>
+	<security:authentication-provider>
+		<security:jdbc-user-service 
+			authorities-by-username-query="select m_email, 'user' from user where m_email=?"
+			users-by-username-query="select m_email, m_pwd as password, 1 m_enabled from user where m_email=?"
+			data-source-ref="driverManagerDataSource"
+		/><!-- db연결 -->
+		
+		<security:password-encoder ref="bCryptPasswordEncoder" />
+	</security:authentication-provider>
+</security:authentication-manager>
+<!-- 성공,실패 핸들러 -->
+<!-- <bean id="loginSuccessHandler" class="bitcamp.travelmaker.security.LoginSuccessHandler"></bean> -->
+<!-- <bean id="loginFailHandler" class="bitcamp.travelmaker.security.LoginFailHandler"></bean> -->
+<!-- <context:component-scan base-package="bitcamp.travelmaker.controller" /> -->
+
+</beans>
