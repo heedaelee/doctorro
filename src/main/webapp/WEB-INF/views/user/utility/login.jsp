@@ -38,29 +38,26 @@
 <script>
 $(document).ready(function() {
 	 console.log('${pageContext.request.contextPath}dd');
-	//테스트
-	/* $('#google').click(function() {
-		alert('버튼클릭');
-		$.ajax({ 
-			type : 'post',
-			url : '/doctorro/user/test', //현재페이지가 /user/login -> 원하는건 /user/test 2. user/test 3.${pageContext.request.contextPath}/user/login
-			data : {"m_email" : $('#m_email').val(),
-				"m_pwd" : $('#m_pwd').val()},
-			success : function(data){
-				alert("success");
-				},
-			error : function(error){
-				alert('fail');				
-			}	
-			})
-	})  */
-	var m_email="${naver.m_email}"
-	var m_pwd="${naver.m_pwd}"
-	if(m_email){
-		$('#m_email').val(m_email);
-		$('#m_pwd').val(m_pwd);
+	
+	//네이버
+	var na="${naver.m_email}"
+	var nap="${naver.m_pwd}"
+	if(na){
+		alert(na);
+		$('#m_email').val(na);
+		$('#m_pwd').val(nap);
 		login();
 	}
+	//구글
+	var go="${google.m_email}"
+	var gop="${google.m_pwd}"
+	if(go){
+		alert(go);
+		$('#m_email').val(go);
+		$('#m_pwd').val(gop);
+		login();
+	}	
+	
 	//로그인 처리
 	 $('#login').click(function() {
 		 event.preventDefault()
@@ -275,7 +272,7 @@ $(document).ready(function() {
                     <div class="sns_login">
                         <a class="btn btn_kakao" id="kakao-login-btn">카카오톡으로 로그인</a>
                         <a href="${naverAuthUrl}" class="btn btn_naver" id="naver_id_login">네이버로 로그인</a>
-                        <a href="" class="btn btn_google" id="google">구글로 로그인</a>
+                        <a href="${google_url}" class="btn btn_google" id="google">구글로 로그인</a>
                     </div>
                 </div>
             </div>

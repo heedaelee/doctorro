@@ -44,6 +44,20 @@
 	<!-- jsonview 설정 -->
 	<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
 
+	<!-- Google 소셜 로그인 연결 설정 -->
+	<bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<constructor-arg value="281172959488-fhgtk20r233g047qts39bl39q2npmkq3.apps.googleusercontent.com" /><!--Client ID  -->
+		<constructor-arg value="RYSnByOkxCRvQbVhx2miTvlz" /><!--Client 보안 번호-->
+	</bean>
+
+	<bean id="googleOAuth2Parameters"
+		class="org.springframework.social.oauth2.OAuth2Parameters">
+		<property name="scope"
+			value="https://www.googleapis.com/auth/userinfo.email"></property>
+		<property name="redirectUri"
+			value="http://localhost:8080/doctorro/user/googleSignInCallback" />
+	</bean>
 
 	<!-- Jdbc 템플릿 설정 -->
 	<bean id="dataSource" class="org.springframework.jdbc.core.JdbcTemplate" >

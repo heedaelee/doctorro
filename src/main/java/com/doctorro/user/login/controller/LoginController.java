@@ -1,6 +1,5 @@
 package com.doctorro.user.login.controller;
 
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +8,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.google.api.Google;
+import org.springframework.social.google.api.impl.GoogleTemplate;
+import org.springframework.social.google.api.plus.Person;
+import org.springframework.social.google.api.plus.PlusOperations;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.AccessGrant;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,12 +48,27 @@ public class LoginController {
     
     @Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    //구글 소셜 로그인 
+    @Autowired
+    private GoogleConnectionFactory googleConnectionFactory;
+    @Autowired
+    private OAuth2Parameters googleOAuth2Parameters;
+ 
+    private OAuth2Operations oauthOperations;
 	
     @RequestMapping("login")
     public String index(Model model, HttpSession session) {
     	/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
         String naverAuthUrl = NaverLogin.getAuthorizationUrl(session);
         model.addAttribute("naverAuthUrl", naverAuthUrl);
+        
+        /* 구글 인증 URL 생성 위해*/
+        oauthOperations = googleConnectionFactory.getOAuthOperations();
+        String url = oauthOperations.buildAuthenticateUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+        System.out.println("/googleLogin, url : " + url);
+        model.addAttribute("google_url", url);
+        
         return "user.login";
     }
     
@@ -61,20 +85,21 @@ public class LoginController {
         
         int result=0;
         result = service.emailCheck(member.getM_email());
+        Map<String, String> naver = new HashMap<String, String>();
+        
+        //기존 아이디 값 저장(암호화 전 값으로 추후 시큐리티 로그인 비교하게..)
+        String id = "";
+        id=member.getM_pwd();
+        
         if(result>0) {
         	//로그인 절차 (DB에 아이디 있으면..)
-        	//자바에서 url:login(security)으로 m_pwd send하기
+        	//login 뷰페이지에서 login메서드로 로그인 하기
         	System.out.println("네이버 로그인 절차 탐");
-        	Map<String, String> naver = new HashMap<String, String>();
         	
         	naver.put("m_email", member.getM_email());
         	naver.put("m_pwd", member.getM_pwd());
         	
         	model.addAttribute("naver", naver);
-        	
-        	/*social page
-        	 * model.addAttribute("m_email", member.getM_email());
-        	model.addAttribute("m_pwd", member.getM_pwd());*/
         	return "user.login";
         }
         //회원가입 절차 (if not)
@@ -83,7 +108,13 @@ public class LoginController {
       	member.setM_pwd(bCryptPasswordEncoder.encode(member.getM_pwd()));
         service.insertUser(member);
         System.out.println("네이버 회원 가입:"+member.toString());
-        return "user.index.index";
+        System.out.println("네이버 로그인 절차 탐");
+    	
+    	naver.put("m_email", member.getM_email());
+    	naver.put("m_pwd", id);
+    	
+    	model.addAttribute("naver", naver);
+        return "user.login";
     }
     
     /* from:login.jsp
@@ -100,7 +131,6 @@ public class LoginController {
     	emailResult=service.emailCheck(member.getM_email());
     	System.out.println("메일체크한 갯수 : "+emailResult);
     	if(emailResult==0) {
-    		/*model.addAttribute("result","idfail");*/
     		System.out.println(model.toString());
     		result="idfail";
     		System.out.println("result 값"+result);
@@ -113,10 +143,8 @@ public class LoginController {
     		boolean re = bCryptPasswordEncoder.matches(member.getM_pwd(), result);
     		System.out.println("pwd체크 일치여부 :"+re);
     		if(re) {
-    			/*model.addAttribute("result","success");*/
     			result="success";
     		}else {
-    			/*model.addAttribute("result","passfail");*/
     			result="passfail";
     		}
     		System.out.println("result 값"+result);
@@ -148,23 +176,110 @@ public class LoginController {
     	return jsonview;
     }
     
+// ------------------------------------ 구글 콜백 ----------------------------------------
+    
+    @RequestMapping(value = "/googleSignInCallback", method = { RequestMethod.GET, RequestMethod.POST })
+    public String doSessionAssignActionPage(Model model,HttpServletRequest request, MemberDTO member) throws Exception {
+ 
+        String code = request.getParameter("code");
+ 
+        oauthOperations = googleConnectionFactory.getOAuthOperations();
+        AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, googleOAuth2Parameters.getRedirectUri(),null);
+ 
+        String accessToken = accessGrant.getAccessToken();
+        Long expireTime = accessGrant.getExpireTime();
+ 
+        if (expireTime != null && expireTime < System.currentTimeMillis()) {
+            accessToken = accessGrant.getRefreshToken();
+            System.out.printf("accessToken is expired. refresh token = {}", accessToken);
+ 
+        }
+ 
+        Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
+        Google googleApi = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
+        System.out.println(connection);
+ 
+        PlusOperations plusOperations = googleApi.plusOperations();
+        Person profile = plusOperations.getGoogleProfile();
+        
+        //위까지가 필수, 아래는 받은 데이터 사용=================================
+        
+        System.out.println("User Uid : " + profile.getId());
+        System.out.println("User Name : " + profile.getDisplayName());
+        System.out.println("User Email : " + profile.getAccountEmail());
+        System.out.println("User Profile : " + profile.getImageUrl());
+        
+        member.setM_pwd(profile.getId());
+        member.setM_email(profile.getAccountEmail());
+        member.setSo_code(4); //4.google 소셜코드
+        if(profile.getDisplayName()!=null && profile.getDisplayName()!="") {
+        	member.setM_nick(profile.getDisplayName());
+        }
+        
+        int result=0;
+        result = service.emailCheck(member.getM_email());
+        Map<String, String> google = new HashMap<String, String>();
+        
+        //기존 아이디 값 저장(암호화 전 값으로 추후 시큐리티 로그인 비교하게..)
+        String id = "";
+        id=member.getM_pwd();
+        
+        if(result>0) {
+        	//로그인 절차 (DB에 아이디 있으면..)
+        	//user.login 뷰페이지에서 login메서드로 로그인 하기
+        	System.out.println("구글 로그인 절차 탐");
+        	
+        	
+        	google.put("m_email", member.getM_email());
+        	google.put("m_pwd", member.getM_pwd());
+        	
+        	model.addAttribute("google", google);
+        	return "user.login";
+        }
+        //회원가입 절차 (if not)
+        //소셜 로그인일땐 패스워드 구글 제공 id를 패스워드 인코딩화 해서 insert
+        //구글이 주는 id키 값 -> 비번 암호화
+      	member.setM_pwd(bCryptPasswordEncoder.encode(member.getM_pwd()));
+        service.insertUser(member);
+        System.out.println("구글 회원 가입:"+member.toString());
+        System.out.println("구글 로그인 절차 탐");
+    	
+    	google.put("m_email", member.getM_email());
+    	google.put("m_pwd", id);
+    	
+    	model.addAttribute("google", google);
+        return "user.login";
+        
+        //[백업] Access Token 취소 소스. 
+        /*try {
+            System.out.println("Closing Token....");
+            String revokeUrl = "https://accounts.google.com/o/oauth2/revoke?token=" + accessToken + "";
+            URL url = new URL(revokeUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setDoOutput(true);
+ 
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+        } catch (Exception e) {
+ 
+            e.printStackTrace();
+        }*/
+ 
+    }
     
     
+    //test
     @RequestMapping("test")
     public View test(String test, Model model) {
     	System.out.println("테스트 성공");
     	model.addAttribute("data", "data");
     	return jsonview;
     }
-    		
-    
-    
-    /* 트러블메이커 방식 일단 보류
-     * public class naverCallback {
-        @RequestMapping("naver")
-        public String index(Model model) {
-            return "user.callback";
-        }
-    }*/
     
 }
