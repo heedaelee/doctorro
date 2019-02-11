@@ -15,8 +15,8 @@
 	<security:http>
 	<security:csrf disabled="true" />
 	<security:form-login login-page="/login"
+	always-use-default-target="true"
 	    authentication-failure-url="/user/login?error=security"
-	    always-use-default-target="true"
 	    default-target-url="/user/index"
 		username-parameter="m_email"
 		password-parameter="m_pwd" />
