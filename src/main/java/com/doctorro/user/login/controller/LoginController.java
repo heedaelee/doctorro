@@ -1,6 +1,8 @@
 package com.doctorro.user.login.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -62,14 +64,23 @@ public class LoginController {
         if(result>0) {
         	//로그인 절차 (DB에 아이디 있으면..)
         	//자바에서 url:login(security)으로 m_pwd send하기
-        	model.addAttribute("m_email", member.getM_email());
-        	model.addAttribute("m_pwd", member.getM_pwd());
-        	return "sociallogin";
+        	System.out.println("네이버 로그인 절차 탐");
+        	Map<String, String> naver = new HashMap<String, String>();
+        	
+        	naver.put("m_email", member.getM_email());
+        	naver.put("m_pwd", member.getM_pwd());
+        	
+        	model.addAttribute("naver", naver);
+        	
+        	/*social page
+        	 * model.addAttribute("m_email", member.getM_email());
+        	model.addAttribute("m_pwd", member.getM_pwd());*/
+        	return "user.login";
         }
         //회원가입 절차 (if not)
         //소셜 로그인일땐 패스워드 res.id나 네이버 제공 id를 패스워드 인코딩화 해서 insert
         //네이버 주는 id키 값 -> 비번 암호화
-      		member.setM_pwd(bCryptPasswordEncoder.encode(member.getM_pwd()));
+      	member.setM_pwd(bCryptPasswordEncoder.encode(member.getM_pwd()));
         service.insertUser(member);
         System.out.println("네이버 회원 가입:"+member.toString());
         return "user.index.index";
@@ -112,6 +123,32 @@ public class LoginController {
     		return result;
     	}
     }
+    
+    /* from:login.jsp
+     * 하는일 :kakao 회원가입
+     * 파라미터:m_email,m_pwd,m_nickname,선택: m_gender,m_iamge -비동기
+     * return : - 
+     */
+    @RequestMapping("kakaojoin")
+    public View kakaojoin(MemberDTO member,Model model) throws Exception {
+    	System.out.println("카카오 join controller 입장");
+    	member.setSo_code(3); //카카오 3
+    	//카카오 id 값
+    	String kakaoId="";
+    	kakaoId = member.getM_pwd();
+    	
+    	//회원가입 절차 
+        //소셜 로그인일땐 패스워드는  카카오 제공 id를 패스워드 인코딩화 해서 insert
+        //카카오 주는 id키 값 -> 비번 암호화
+      	member.setM_pwd(bCryptPasswordEncoder.encode(member.getM_pwd()));
+        service.insertUser(member);
+        System.out.println("카카오 회원 가입:"+member.toString());
+        model.addAttribute("m_email", member.getM_email());
+        model.addAttribute("m_pwd", kakaoId);
+    	return jsonview;
+    }
+    
+    
     
     @RequestMapping("test")
     public View test(String test, Model model) {

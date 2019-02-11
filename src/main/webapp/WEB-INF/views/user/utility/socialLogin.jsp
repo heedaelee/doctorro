@@ -12,7 +12,7 @@
 	 var m_email = '${m_email}';
 	var m_pwd = '${m_pwd}';
 	
-	$.ajax({
+	/* $.ajax({
 		type : 'post',
 		url : '${pageContext.request.contextPath}/login',
 		data : {
@@ -22,7 +22,7 @@
 		success : function() {
 				 location.href = "${pageContext.request.contextPath}/user/index"; 
 			}   
-		}); 
+		}); */ 
 }) 
 </script>
 <body>

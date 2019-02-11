@@ -28,6 +28,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/validator.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/slick.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+    <!--카카오톡 로그인  -->
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -52,7 +54,14 @@ $(document).ready(function() {
 			}	
 			})
 	})  */
-	
+	var m_email="${naver.m_email}"
+	var m_pwd="${naver.m_pwd}"
+	if(m_email){
+		$('#m_email').val(m_email);
+		$('#m_pwd').val(m_pwd);
+		login();
+	}
+	//로그인 처리
 	 $('#login').click(function() {
 		 event.preventDefault()
 		 alert('아뒤'+$('#m_email').val() + '\n'+ '비번'+$('#m_pwd').val());
@@ -66,17 +75,20 @@ $(document).ready(function() {
 					},
 				success : function(data) {
 					if (data == "success") {
+						/*로그인 형식 no ajax 변경
 						$.ajax({
 							type : 'post',
+							async : false,
 							url : '${pageContext.request.contextPath}/login',
 							data : {
 								"m_email" : $('#m_email').val(),
 								"m_pwd" : $('#m_pwd').val()
 								},
 							success : function() {
-									location.href = "${pageContext.request.contextPath}/user/index"; 
-								} 
-							})
+									 location.href = "${pageContext.request.contextPath}/user/index";  
+								}
+							}) */
+							login();
 						}
 					 if (data == "idfail") {
 						$('#alertmsg').text('아이디가 존재하지 않습니다.');
@@ -100,54 +112,108 @@ $(document).ready(function() {
 			
 		})
 	})
+	
+	function login() {
+			$('#loginForm').submit();
+	}
+	
 	$('#alert_pop').click(function(){
 		if($('#alertmsg').text()=='아이디가 존재하지 않습니다.'||$('#alertmsg').text()=='로그인에 실패하였습니다.'){
    			window.location.href="login";
    			}
-    }
-)
+	   }
+	)
 	
-	
-		 //로그인처리
-		/* $('#login').click(function() {
-			alert('${pageContext.request.contextPath}/user/logincheck');
-			// ajax 경로 문제
-			$.ajax({ 
-				type : 'post',
-				url : '${pageContext.request.contextPath}/user/logincheck',
-				data : {
-					"m_email" : $('#m_email').val().trim(),
-					"m_pwd" : $('#m_pwd').val().trim()
-						},
-				success : function(data) {
-					console.log(data)
-					if (data == "idfail") {
-						alert('로그인실패');
-						// location.href = "index.htm?error=id"; 
-						} 
-					if (data == "passfail") {
-						alert('로그인실패');
-						// location.href = "index.htm?error=pass"; 
-						} 
-					else {
-						$.ajax({
-							type : 'post',
-							url : '${pageContext.request.contextPath}/login',
-							data : {
-								"m_email" : $('#m_email').val().trim(),
-								"m_pwd" : $('#m_pwd').val().trim()},
-							success : function(data) {
-								console.log(data.result);
-								if (data.result == "success") {
-									alert('로그인성공')
-									// location.href = "index.htm"; 
-								} 
-							}
-						})
-					}//else 끝
-				}
-			})//ajax끝
-		})//로그인처리 끝 */
+	$(function(){
+  /*카카오톡 로그인  */ 
+  Kakao.init('f2911550662316c4cd821fd8300158df');
+  
+  // 카카오 로그인 버튼을 생성합니다.
+  Kakao.Auth.createLoginButton({
+    container: '#kakao-login-btn',
+    success: function(authObj) {
+        // 로그인 성공시, API를 호출합니다.
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function(res) {
+        	  alert(res);
+          $.ajax({
+        	  type:'post',
+        	  url:'${pageContext.request.contextPath}/user/logincheck',
+        	  data : {
+        		  "m_email":res.kakao_account.email,
+        		  "m_pwd" : res.id
+        		  },
+        	  success:function(data){ 
+        		  console.log(data);
+        		  if(data =="success"){
+        			  $('#m_email').val(res.kakao_account.email);
+        			  $('#m_pwd').val(res.id);
+        			  /* $.ajax({
+                          type : 'post',
+                          url : '${pageContext.request.contextPath}/login',
+                          data :{"m_email":res.kakao_account.email,
+                        	  	 "m_pwd" : res.id},
+                          success : function(){
+                        	  alert('${pageContext.request.contextPath}/user/index')
+                        	  location.href="${pageContext.request.contextPath}/user/index";
+                          }
+                          }); */
+        			  login();
+        		  }if(data=="idfail"){
+        			  $.ajax({
+        		             type : 'post',
+        		             url : '${pageContext.request.contextPath}/user/kakaojoin',
+        		             data : {"m_email":res.kakao_account.email,
+        		            		 "m_pwd": res.id,
+        		           	  	  	 "m_nick":res.properties.nickname,
+        		           	  		 // "m_age_range":res.kakao_account.age_rage, 
+        		           	  		 // "m_birthday":res.kakao_account.birthday,
+        		           	  	  	 "m_gender":res.kakao_account.gender,
+        		           	      	 "m_img":res.properties.profile_image,
+        		         	  	  	},
+        		             dataType:"json",
+        		          	 success : function(data) {
+        		          		 alert(data.m_email+data.m_pwd);
+        		          		  $('#m_email').val(res.kakao_account.email);
+        	        			  $('#m_pwd').val(res.id);
+        		          		  /* $.ajax({
+        		                      type : 'post',
+        		                      url : '${pageContext.request.contextPath}/login',
+        		                      data :{"m_email":data.m_email,
+        		                    	  	 "m_pwd" : data.m_pwd},
+        		                      success : function(){
+        		                    	   location.href="${pageContext.request.contextPath}/user/index"; 
+        		                      }
+        		                      }); */
+        	        			  login();
+        		          	 }	
+        		          	  ,
+        		             error : function(error) {
+        		            	 $('#alertmsg').text('로그인에 실패하였습니다.');
+        			                $('#alert_pop').modal();
+        				             console.log(error);
+        				             console.log(error.status);
+        				       }
+        		   	})
+        			  
+        		  }
+        	  }
+          
+          })
+      
+          },
+          fail: function(error) {
+            alert(JSON.stringify(error));
+          }
+        });
+      },
+      fail: function(err) {
+        alert(JSON.stringify(err));
+      }
+    });
+ })
+		 
 	})
 </script>
 <body>
@@ -172,7 +238,7 @@ $(document).ready(function() {
                 <h3 class="title">로그인</h3>
             </div>
             <div class="login_form">
-                <form method="post" data-toggle="validator" role="form" >
+                <form method="post" data-toggle="validator" role="form" id="loginForm" action='${pageContext.request.contextPath}/login'>
                     <div class="">
                         <strong class="form_title">이메일</strong>
                         <div class="form-group">
@@ -207,18 +273,8 @@ $(document).ready(function() {
                 <div class="sns_inner">
                     <strong>SNS 계정 로그인</strong>
                     <div class="sns_login">
-                        <a href="" class="btn btn_kakao">카카오톡으로 로그인</a>
+                        <a class="btn btn_kakao" id="kakao-login-btn">카카오톡으로 로그인</a>
                         <a href="${naverAuthUrl}" class="btn btn_naver" id="naver_id_login">네이버로 로그인</a>
-                        <!-- //네이버아이디로로그인 버튼 노출 영역 보류 -->
-						  <!-- <script type="text/javascript">
-						  	var naver_id_login = new naver_id_login("sLKp6zrzm0kadWwbPdE0", "http://localhost:8080/doctorro/user/naver");
-						  	var state = naver_id_login.getUniqState();
-						  	naver_id_login.setButton("white", 2,40);
-						  	naver_id_login.setDomain("http://localhost:8080/doctorro/user/login");
-						  	naver_id_login.setState(state);
-						  	naver_id_login.setPopup();
-						  	naver_id_login.init_naver_id_login();
-						  </script> -->
                         <a href="" class="btn btn_google" id="google">구글로 로그인</a>
                     </div>
                 </div>
