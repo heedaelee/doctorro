@@ -7,6 +7,7 @@ public class HealthDto {
 	
 	private int contId;
 	private String contTitle;
+	private String contSrc;
 	private String Summary;
 	private String thumImg;
 	private String mThumImg;

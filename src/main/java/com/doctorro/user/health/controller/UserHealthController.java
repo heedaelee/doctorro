@@ -31,8 +31,17 @@ public class UserHealthController {
     public String userHealth(Model model, Principal principal, HttpServletRequest request ) {
     	System.out.println("유저헬스 컨트롤탐");
     	
-    	parse();
+    	int page=1;
+    	if(request.getParameter("page")!=null){
+    		page = Integer.parseInt(request.getParameter("page"));
+    	}
     	
+    	List<HealthDto> list = parse(page);
+    	
+    	model.addAttribute("list", list);
+    	
+    	System.out.println("컨트롤러 최종 값"+ list);
+    	//=================================================작업중
         return "health.user";
     }
     
@@ -48,11 +57,13 @@ public class UserHealthController {
     
 	
 	
-    public HealthDto parse() {
-    	int page = 1;	// 페이지 초기값 
-		int numOfRow = 45;
+    public List<HealthDto> parse(int page) {
+    	 
+		int numOfRow = 9;
+		
+		List<HealthDto> list = new ArrayList<HealthDto>();
 		try{
-			List<HealthDto> list = new ArrayList<HealthDto>(); 
+			 
 			
 			while(true){
 				// parsing할 url 지정(API 키 포함해서)
@@ -92,10 +103,19 @@ public class UserHealthController {
 						System.out.println("컨텐츠 추천수 : " + getTagValue("recoCnt", eElement));
 						
 						HealthDto healthDto = new HealthDto();
-						healthDto.setContId(contId);
-						객체 생성중 스탑 해야할건 ..
-						페이지 걍 던지기
+						healthDto.setContId(Integer.parseInt(getTagValue("contId", eElement)));
+						healthDto.setContTitle(getTagValue("contTitle", eElement));
+						healthDto.setContSrc(getTagValue("contSrc", eElement));
+						healthDto.setSummary(getTagValue("Summary", eElement));
+						healthDto.setThumImg(getTagValue("thumImg", eElement));
+						healthDto.setMThumImg(getTagValue("mThumImg", eElement));
+						healthDto.setContType(getTagValue("contType", eElement));
+						healthDto.setFrstRgsrDt(getTagValue("frstRgsrDt", eElement));
+						healthDto.setDetailUrl(getTagValue("detailUrl", eElement));
+						healthDto.setContViewCnt(getTagValue("contViewCnt", eElement));
+						healthDto.setRecoCnt(getTagValue("recoCnt", eElement));
 						
+						list.add(temp, healthDto);
 					}	// if end
 				}	//  for end
 				
@@ -111,8 +131,7 @@ public class UserHealthController {
 		} catch (Exception e){	
 			e.printStackTrace();
 		}	// try~catch end
-		
-		return 
+		return list;
     }
     
 }
