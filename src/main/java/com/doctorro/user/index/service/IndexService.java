@@ -16,10 +16,10 @@ public class IndexService {
     private SqlSession sqlSession;
     
     //인덱스에 user 정보 갖고오기(join단의 MemberDto 활용)
-    public MemberDTO getUser(String m_email) {
+    public MemberDTO getUser(String au_email) {
     	MemberDTO dto;
     	IndexDao dao = sqlSession.getMapper(IndexDao.class);
-    	dto=dao.getUser(m_email);
+    	dto=dao.getUser(au_email);
     	
     	return dto;
     }

@@ -6,7 +6,7 @@
 
 <select id="getPass" parameterType="String"
 							resultType="String">
-	 select m_pwd from user where m_email = #{m_email}
+	 select au_pwd from auth where au_email = #{au_email}
 	</select>
 
 </mapper>

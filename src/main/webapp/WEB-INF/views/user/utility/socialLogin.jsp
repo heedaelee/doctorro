@@ -9,15 +9,15 @@
 <script type="text/javascript">
  $(document).ready(function() {
 	 console.log('${pageContext.request.contextPath}');
-	 var m_email = '${m_email}';
-	var m_pwd = '${m_pwd}';
+	 var au_email = '${au_email}';
+	var au_pwd = '${au_pwd}';
 	
 	/* $.ajax({
 		type : 'post',
 		url : '${pageContext.request.contextPath}/login',
 		data : {
-			"m_email" : m_email,
-			"m_pwd" : m_pwd
+			"au_email" : au_email,
+			"au_pwd" : au_pwd
 			},
 		success : function() {
 				 location.href = "${pageContext.request.contextPath}/user/index"; 

@@ -81,23 +81,23 @@ public class LoginController {
         
         //로그인 사용자 정보를 읽어온다.
         String profile = NaverLogin.getUserProfile(oauthToken);
-        MemberDTO member = NaverLogin.changeData(profile);
+         MemberDTO member = NaverLogin.changeData(profile);
         
         int result=0;
-        result = service.emailCheck(member.getM_email());
+        result = service.emailCheck(member.getAu_email());
         Map<String, String> naver = new HashMap<String, String>();
         
         //기존 아이디 값 저장(암호화 전 값으로 추후 시큐리티 로그인 비교하게..)
         String id = "";
-        id=member.getM_pwd();
+        id=member.getAu_pwd();
         
         if(result>0) {
         	//로그인 절차 (DB에 아이디 있으면..)
         	//login 뷰페이지에서 login메서드로 로그인 하기
         	System.out.println("네이버 로그인 절차 탐");
         	
-        	naver.put("m_email", member.getM_email());
-        	naver.put("m_pwd", member.getM_pwd());
+        	naver.put("au_email", member.getAu_email());
+        	naver.put("au_pwd", member.getAu_pwd());
         	
         	model.addAttribute("naver", naver);
         	return "user.login";
@@ -105,13 +105,13 @@ public class LoginController {
         //회원가입 절차 (if not)
         //소셜 로그인일땐 패스워드 res.id나 네이버 제공 id를 패스워드 인코딩화 해서 insert
         //네이버 주는 id키 값 -> 비번 암호화
-      	member.setM_pwd(bCryptPasswordEncoder.encode(member.getM_pwd()));
+      	member.setAu_pwd(bCryptPasswordEncoder.encode(member.getAu_pwd()));
         service.insertUser(member);
         System.out.println("네이버 회원 가입:"+member.toString());
         System.out.println("네이버 로그인 절차 탐");
     	
-    	naver.put("m_email", member.getM_email());
-    	naver.put("m_pwd", id);
+    	naver.put("au_email", member.getAu_email());
+    	naver.put("au_pwd", id);
     	
     	model.addAttribute("naver", naver);
         return "user.login";
@@ -119,7 +119,7 @@ public class LoginController {
     
     /* from:login.jsp
      * 하는일 :로그인 email, pwd체크
-     * 파라미터:m_email,m_pwd -비동기
+     * 파라미터:au_email,au_pwd -비동기
      * return : 성공:success, 아이디 x:idfail, 패스x:passfail 
      */
     @RequestMapping("logincheck")
@@ -128,7 +128,7 @@ public class LoginController {
     	String result="";
     	int emailResult=0;
     	//e메일체크
-    	emailResult=service.emailCheck(member.getM_email());
+    	emailResult=service.emailCheck(member.getAu_email());
     	System.out.println("메일체크한 갯수 : "+emailResult);
     	if(emailResult==0) {
     		System.out.println(model.toString());
@@ -140,7 +140,7 @@ public class LoginController {
     		//pwd체크
     		System.out.println("pwd체크 탐");
     		result = loginService.getPass(member);
-    		boolean re = bCryptPasswordEncoder.matches(member.getM_pwd(), result);
+    		boolean re = bCryptPasswordEncoder.matches(member.getAu_pwd(), result);
     		System.out.println("pwd체크 일치여부 :"+re);
     		if(re) {
     			result="success";
@@ -154,7 +154,7 @@ public class LoginController {
     
     /* from:login.jsp
      * 하는일 :kakao 회원가입
-     * 파라미터:m_email,m_pwd,m_nickname,선택: m_gender,m_iamge -비동기
+     * 파라미터:au_email,au_pwd,m_nickname,선택: m_gender,m_iamge -비동기
      * return : - 
      */
     @RequestMapping("kakaojoin")
@@ -163,16 +163,16 @@ public class LoginController {
     	member.setSo_code(3); //카카오 3
     	//카카오 id 값
     	String kakaoId="";
-    	kakaoId = member.getM_pwd();
+    	kakaoId = member.getAu_pwd();
     	
     	//회원가입 절차 
         //소셜 로그인일땐 패스워드는  카카오 제공 id를 패스워드 인코딩화 해서 insert
         //카카오 주는 id키 값 -> 비번 암호화
-      	member.setM_pwd(bCryptPasswordEncoder.encode(member.getM_pwd()));
+      	member.setAu_pwd(bCryptPasswordEncoder.encode(member.getAu_pwd()));
         service.insertUser(member);
         System.out.println("카카오 회원 가입:"+member.toString());
-        model.addAttribute("m_email", member.getM_email());
-        model.addAttribute("m_pwd", kakaoId);
+        model.addAttribute("au_email", member.getAu_email());
+        model.addAttribute("au_pwd", kakaoId);
     	return jsonview;
     }
     
@@ -209,20 +209,20 @@ public class LoginController {
         System.out.println("User Email : " + profile.getAccountEmail());
         System.out.println("User Profile : " + profile.getImageUrl());
         
-        member.setM_pwd(profile.getId());
-        member.setM_email(profile.getAccountEmail());
+        member.setAu_pwd(profile.getId());
+        member.setAu_email(profile.getAccountEmail());
         member.setSo_code(4); //4.google 소셜코드
         if(profile.getDisplayName()!=null && profile.getDisplayName()!="") {
         	member.setM_nick(profile.getDisplayName());
         }
         
         int result=0;
-        result = service.emailCheck(member.getM_email());
+        result = service.emailCheck(member.getAu_email());
         Map<String, String> google = new HashMap<String, String>();
         
         //기존 아이디 값 저장(암호화 전 값으로 추후 시큐리티 로그인 비교하게..)
         String id = "";
-        id=member.getM_pwd();
+        id=member.getAu_pwd();
         
         if(result>0) {
         	//로그인 절차 (DB에 아이디 있으면..)
@@ -230,8 +230,8 @@ public class LoginController {
         	System.out.println("구글 로그인 절차 탐");
         	
         	
-        	google.put("m_email", member.getM_email());
-        	google.put("m_pwd", member.getM_pwd());
+        	google.put("au_email", member.getAu_email());
+        	google.put("au_pwd", member.getAu_pwd());
         	
         	model.addAttribute("google", google);
         	return "user.login";
@@ -239,38 +239,17 @@ public class LoginController {
         //회원가입 절차 (if not)
         //소셜 로그인일땐 패스워드 구글 제공 id를 패스워드 인코딩화 해서 insert
         //구글이 주는 id키 값 -> 비번 암호화
-      	member.setM_pwd(bCryptPasswordEncoder.encode(member.getM_pwd()));
+      	member.setAu_pwd(bCryptPasswordEncoder.encode(member.getAu_pwd()));
         service.insertUser(member);
         System.out.println("구글 회원 가입:"+member.toString());
         System.out.println("구글 로그인 절차 탐");
     	
-    	google.put("m_email", member.getM_email());
-    	google.put("m_pwd", id);
+    	google.put("au_email", member.getAu_email());
+    	google.put("au_pwd", id);
     	
     	model.addAttribute("google", google);
         return "user.login";
         
-        //[백업] Access Token 취소 소스. 
-        /*try {
-            System.out.println("Closing Token....");
-            String revokeUrl = "https://accounts.google.com/o/oauth2/revoke?token=" + accessToken + "";
-            URL url = new URL(revokeUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setDoOutput(true);
- 
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-        } catch (Exception e) {
- 
-            e.printStackTrace();
-        }*/
- 
     }
     
     

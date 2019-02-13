@@ -25,7 +25,8 @@
     <context:annotation-config/>
 
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:resources mapping="/resource_doctor/**" location="/resource_doctor/"/>
+    <mvc:resources mapping="/resource_user/**" location="/resource_user/"/>
 	
 	<context:component-scan base-package="com.doctorro.*" name-generator="com.doctorro.FullBeanNameGenerator"/>
 

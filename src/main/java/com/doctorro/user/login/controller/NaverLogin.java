@@ -8,6 +8,8 @@ package com.doctorro.user.login.controller;
 
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -112,14 +114,15 @@ public class NaverLogin {
     
     public static MemberDTO changeData(String profile) throws JsonProcessingException, IOException {
     	MemberDTO member = new MemberDTO();
+    	 
 		// JSON 형태 반환값 처리
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode properties = mapper.readTree(profile);
 		JsonNode response = properties.get("response");
 		if (response.has("id")) {
 			member.setSo_code(2); // 일반회원 :1, 네이버:2, 카카오:3, 구글:4
-			member.setM_email(response.get("email").asText());
-			member.setM_pwd(response.get("id").asText());
+			member.setAu_email(response.get("email").asText());
+			member.setAu_pwd(response.get("id").asText());
 			if(response.hasNonNull("nickname")) {
 				member.setM_nick(response.get("nickname").asText());
 			}

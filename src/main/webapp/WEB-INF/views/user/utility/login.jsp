@@ -14,20 +14,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no viewport-fit=cover">
     <title>dr.Ro</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slick.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/base.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/slick.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/common.css" />
     <!--네이버 로그인 추가  -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <!--네이버 로그인 추가 종료  -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/validator.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/slick.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/validator.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/slick.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/common.js"></script>
     <!--카카오톡 로그인  -->
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!--[if lt IE 9]>
@@ -40,35 +40,35 @@ $(document).ready(function() {
 	 console.log('${pageContext.request.contextPath}dd');
 	
 	//네이버
-	var na="${naver.m_email}"
-	var nap="${naver.m_pwd}"
+	var na="${naver.au_email}"
+	var nap="${naver.au_pwd}"
 	if(na){
 		alert(na);
-		$('#m_email').val(na);
-		$('#m_pwd').val(nap);
+		$('#au_email').val(na);
+		$('#au_pwd').val(nap);
 		login();
 	}
 	//구글
-	var go="${google.m_email}"
-	var gop="${google.m_pwd}"
+	var go="${google.au_email}"
+	var gop="${google.au_pwd}"
 	if(go){
 		alert(go);
-		$('#m_email').val(go);
-		$('#m_pwd').val(gop);
+		$('#au_email').val(go);
+		$('#au_pwd').val(gop);
 		login();
 	}	
 	
 	//로그인 처리
 	 $('#login').click(function() {
 		 event.preventDefault()
-		 alert('아뒤'+$('#m_email').val() + '\n'+ '비번'+$('#m_pwd').val());
+		 alert('아뒤'+$('#au_email').val() + '\n'+ '비번'+$('#au_pwd').val());
 		 
 		$.ajax({
 			type:'post',
 			url : '${pageContext.request.contextPath}/user/logincheck',
 			data : {
-				"m_email" : $('#m_email').val(),
-				"m_pwd" : $('#m_pwd').val()
+				"au_email" : $('#au_email').val(),
+				"au_pwd" : $('#au_pwd').val()
 					},
 				success : function(data) {
 					if (data == "success") {
@@ -78,8 +78,8 @@ $(document).ready(function() {
 							async : false,
 							url : '${pageContext.request.contextPath}/login',
 							data : {
-								"m_email" : $('#m_email').val(),
-								"m_pwd" : $('#m_pwd').val()
+								"au_email" : $('#au_email').val(),
+								"au_pwd" : $('#au_pwd').val()
 								},
 							success : function() {
 									 location.href = "${pageContext.request.contextPath}/user/index";  
@@ -89,13 +89,13 @@ $(document).ready(function() {
 						}
 					 if (data == "idfail") {
 						$('#alertmsg').text('아이디가 존재하지 않습니다.');
-						$('#m_pwd').val("");
+						$('#au_pwd').val("");
 	                    $('#alert_pop').modal();
 						/* location.href = "login?error=id"; */ 
 						} 
 					if (data == "passfail") {
 						$('#alertmsg').text('비밀번호가 맞지 않습니다.');
-						$('#m_pwd').val("");
+						$('#au_pwd').val("");
 						$('#alert_pop').modal();
 						/* location.href = "login?error=pass"; */ 
 						}  
@@ -138,19 +138,19 @@ $(document).ready(function() {
         	  type:'post',
         	  url:'${pageContext.request.contextPath}/user/logincheck',
         	  data : {
-        		  "m_email":res.kakao_account.email,
-        		  "m_pwd" : res.id
+        		  "au_email":res.kakao_account.email,
+        		  "au_pwd" : res.id
         		  },
         	  success:function(data){ 
         		  console.log(data);
         		  if(data =="success"){
-        			  $('#m_email').val(res.kakao_account.email);
-        			  $('#m_pwd').val(res.id);
+        			  $('#au_email').val(res.kakao_account.email);
+        			  $('#au_pwd').val(res.id);
         			  /* $.ajax({
                           type : 'post',
                           url : '${pageContext.request.contextPath}/login',
-                          data :{"m_email":res.kakao_account.email,
-                        	  	 "m_pwd" : res.id},
+                          data :{"au_email":res.kakao_account.email,
+                        	  	 "au_pwd" : res.id},
                           success : function(){
                         	  alert('${pageContext.request.contextPath}/user/index')
                         	  location.href="${pageContext.request.contextPath}/user/index";
@@ -161,8 +161,8 @@ $(document).ready(function() {
         			  $.ajax({
         		             type : 'post',
         		             url : '${pageContext.request.contextPath}/user/kakaojoin',
-        		             data : {"m_email":res.kakao_account.email,
-        		            		 "m_pwd": res.id,
+        		             data : {"au_email":res.kakao_account.email,
+        		            		 "au_pwd": res.id,
         		           	  	  	 "m_nick":res.properties.nickname,
         		           	  		 // "m_age_range":res.kakao_account.age_rage, 
         		           	  		 // "m_birthday":res.kakao_account.birthday,
@@ -171,14 +171,14 @@ $(document).ready(function() {
         		         	  	  	},
         		             dataType:"json",
         		          	 success : function(data) {
-        		          		 alert(data.m_email+data.m_pwd);
-        		          		  $('#m_email').val(res.kakao_account.email);
-        	        			  $('#m_pwd').val(res.id);
+        		          		 alert(data.au_email+data.au_pwd);
+        		          		  $('#au_email').val(res.kakao_account.email);
+        	        			  $('#au_pwd').val(res.id);
         		          		  /* $.ajax({
         		                      type : 'post',
         		                      url : '${pageContext.request.contextPath}/login',
-        		                      data :{"m_email":data.m_email,
-        		                    	  	 "m_pwd" : data.m_pwd},
+        		                      data :{"au_email":data.au_email,
+        		                    	  	 "au_pwd" : data.au_pwd},
         		                      success : function(){
         		                    	   location.href="${pageContext.request.contextPath}/user/index"; 
         		                      }
@@ -240,13 +240,13 @@ $(document).ready(function() {
                         <strong class="form_title">이메일</strong>
                         <div class="form-group">
                             <label for="" class="sr-only">이메일</label>
-                            <input class="form-control" type="email" id="m_email" name="m_email"  placeholder="수신 가능한 이메일을 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
+                            <input class="form-control" type="email" id="au_email" name="au_email"  placeholder="수신 가능한 이메일을 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <strong class="form_title">비밀번호</strong>
                         <div class="form-group">
                             <label for="" class="sr-only">비밀번호</label>
-                            <input class="form-control" type="password" name="m_pwd"  id="m_pwd" data-minlength="8" placeholder="비밀번호를 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
+                            <input class="form-control" type="password" name="au_pwd"  id="au_pwd" data-minlength="8" placeholder="비밀번호를 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group check_box">

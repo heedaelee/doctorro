@@ -23,15 +23,14 @@ public class UserIndexController {
     public String index(Model model, Principal principal, HttpServletRequest request ) {
     	
 	    /*	유저 로그인 인증 후
-	    	 param : m_email
+	    	 param : au_email
 	    	 return : dto(유저정보)	*/
     	if(principal!=null) {
-			request.getSession().setAttribute("m_email",principal.getName());				
-			MemberDTO dto = new MemberDTO();
-			System.out.println("로그인 후 정보 받기 : principal 받아 session에 입력한 email :"+request.getSession().getAttribute("m_email"));
-			dto = service.getUser(principal.getName());
-			model.addAttribute("dto", dto);
-			//model.addAttribute("social", "no");
+			request.getSession().setAttribute("au_email",principal.getName());				
+			MemberDTO userdto = new MemberDTO();
+			System.out.println("로그인 후 정보 받기 : principal 받아 session에 입력한 email :"+request.getSession().getAttribute("au_email"));
+			userdto = service.getUser(principal.getName());
+			model.addAttribute("userdto", userdto);
 		return "user.index.index";
 	}
     	

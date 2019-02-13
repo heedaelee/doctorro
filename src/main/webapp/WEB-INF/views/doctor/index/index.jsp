@@ -1,8 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: adguy
-  Date: 2019-01-29
-  Time: 오전 10:58
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+        <div class="contents" style=";background: #ff00ff">
+            <div class="title_box hidden-xs">
+                <h3 class="title">메인페이지</h3>
+            </div>
+            sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>sss<br/>
+        </div>

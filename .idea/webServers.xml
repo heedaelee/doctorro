@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="8094154d-79c3-4dce-aedd-ca12546cf28d" name="rsad" url="http://13.209.223.79">
+        <fileTransfer host="13.209.223.79" port="22" privateKey="C:\Users\adguy\Desktop\닥터로\키폴더\rsad-dev.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

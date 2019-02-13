@@ -3,6 +3,7 @@ package com.doctorro.user.join.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.http.client.AuthCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
+
 
 import com.doctorro.user.join.dto.MemberDTO;
 import com.doctorro.user.join.service.JoinService;
@@ -36,7 +38,7 @@ public class JoinController {
     }
 
     @RequestMapping(value = "join", method = RequestMethod.POST)
-    public @ResponseBody String userInsert(HttpServletRequest request, @Valid MemberDTO memberDTO, Model model, BindingResult bindingResult) throws Exception {
+    public @ResponseBody String userInsert(HttpServletRequest request, @Valid MemberDTO memberDTO, Model model,BindingResult bindingResult) throws Exception {
         String r = "";
         int result = 0;
         int nicResult=0;
@@ -55,14 +57,14 @@ public class JoinController {
             return r;
         }/*닉네임 체크 끝*/
         /*이메일 체크*/
-        emailResult = service.emailCheck(memberDTO.getM_email());
+        emailResult = service.emailCheck(memberDTO.getAu_email());
         if(emailResult>0){
             r="DoubleEmail";
             return r;
         }/*이메일 체크 끝*/
         System.out.println("이메일 중복 통과");
         //암호화
-        memberDTO.setM_pwd(bCryptPasswordEncoder.encode(memberDTO.getM_pwd()));
+        memberDTO.setAu_pwd(bCryptPasswordEncoder.encode(memberDTO.getAu_email()));
         //social 간편 로그인 아닐시 so_code=1 디폴트값 넣기
         memberDTO.setSo_code(1);
         //기본 포인트 3,000점 m_point =3000점

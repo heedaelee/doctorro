@@ -17,19 +17,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>dr.Ro</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slick.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/base.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/common.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/validator.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/slick.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/slick.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/main.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/validator.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/slick.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/common.js"></script>
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -45,6 +47,22 @@
 
     <!-- container -->
     <div class="container">
+    	 <div class="sub_nav">
+            <div>
+                <ul>
+                    <li class="on"><a href="#">건강정보</a></li>
+                    <li><a href="#">질병정보</a></li>
+                    <li><a href="#">제약정보</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="breadcrumb_wrap hidden-xs">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">건강정보</a></li>
+            <li>건강정보</li>
+          </ul>
+        </div>
   		  <%--content include--%>
             <tiles:insertAttribute name="content" />
             <%--//content include--%>

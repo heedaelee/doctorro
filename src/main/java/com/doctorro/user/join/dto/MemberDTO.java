@@ -8,15 +8,20 @@ import javax.validation.constraints.Size;
 
 @Data
 public class MemberDTO {
+	
+	private int au_seq;
+	@NotNull
+	private String au_email;
+	@NotNull
+	private String au_pwd;
+	private String roll_code;
+	private String au_enabled;
+	
     private int m_seq;
+    
     private int so_code;
-    @NotNull 
-    private String m_email;
-    @NotNull
-    private String m_pwd;
     @NotNull @Size(max=10)
     private String m_nick;
-    private String m_enabled;
     private String m_img;
     private String m_regdate;
     private String m_gender;

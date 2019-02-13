@@ -8,17 +8,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no viewport-fit=cover">
 <title>dr.Ro</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/normalize.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slick.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/base.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/common.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/validator.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/slick.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/slick.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/base.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/common.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/validator.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/slick.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/common.js"></script>
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -37,17 +37,17 @@ $('#submit').click(function () {
         $('#alert_pop').modal();
         $('#m_nick').focus();
         return false;
-    }else if(!pwdRule.test($('#m_pwd').val())){
-    	console.log($('#m_pwd').val());
+    }else if(!pwdRule.test($('#au_pwd').val())){
+    	console.log($('#au_pwd').val());
         $('#alertmsg').text('패스워드 형식이 바르지 않습니다');
         $('#alert_pop').modal();
-        $('#m_pwd').focus();
+        $('#au_pwd').focus();
         return false;
     }else if(!$('#check01').is(":checked")||!$('#check02').is(":checked")
     	||!$('#check03').is(":checked")||!$('#check04').is(":checked")){
     	$('#alertmsg').text('약관에 동의 해야 합니다');
         $('#alert_pop').modal();
-        $('#m_pwd').focus();
+        $('#au_pwd').focus();
         return false;
     }
     else{
@@ -65,32 +65,32 @@ $('#submit').click(function () {
                     $('#alertmsg').text('회원가입이 완료되었습니다.');
                     $('#alertmsg + p').empty();
                     $('#alert_pop').modal();
-                    $('#m_pwd').val("");
-                    $('#m_pwd2').val("");
+                    $('#au_pwd').val("");
+                    $('#au_pwd2').val("");
                     return false;
 				}
                 if(data=="DoubleNick"){
                     $('#alertmsg').text('이미 닉네임이 있습니다.');
                     $('#alert_pop').modal();
                     $('#m_nick').focus();
-                    $('#m_pwd').val("");
-                    $('#m_pwd2').val("");
+                    $('#au_pwd').val("");
+                    $('#au_pwd2').val("");
                     return false;
                 }
                 if(data=="DoubleEmail"){
                     $('#alertmsg').text('이미 이메일이 있습니다.');
                     $('#alert_pop').modal();
-                    $('#m_email').focus();
-                    $('#m_pwd').val("");
-                    $('#m_pwd2').val("");
+                    $('#au_email').focus();
+                    $('#au_pwd').val("");
+                    $('#au_pwd2').val("");
                     return false;
                 }
 				else{
                     $('#alertmsg').text('회원가입에 실패하였습니다');
                     $('#alert_pop').modal();
                     $('#m_nick').focus();
-                    $('#m_pwd').val("");
-                    $('#m_pwd2').val("");
+                    $('#au_pwd').val("");
+                    $('#au_pwd2').val("");
                     return false;
                 	}
             	},
@@ -98,8 +98,8 @@ $('#submit').click(function () {
                 $('#alertmsg').text('회원가입에 실패하였습니다');
                 $('#alert_pop').modal();
                 $('#m_nick').focus();
-                $('#m_pwd').val("");
-                $('#m_pwd2').val("");
+                $('#au_pwd').val("");
+                $('#au_pwd2').val("");
                console.log(error);
                console.log(error.status);
             }
@@ -147,17 +147,17 @@ $('#submit').click(function () {
                 </div>
                 <div class="form-group">
                     <label for="email" class="label_txt must">이메일</label>
-                    <input class="form-control" type="email" name="m_email" data-error="잘못된 이메일 형식입니다." id="m_email" placeholder="이메일을 입력해 주세요">
+                    <input class="form-control" type="email" name="au_email" data-error="잘못된 이메일 형식입니다." id="au_email" placeholder="이메일을 입력해 주세요">
                     <div class="help-block with-errors"></div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="label_txt must">비밀번호</label>
-                    <input class="form-control" type="password" data-minlength="8" id="m_pwd" name="m_pwd" placeholder="영문자 및 숫자 포함 8자 이상" data-error="8자리 이상의 영어 + 숫자 형태로 입력해주세요." >
+                    <input class="form-control" type="password" data-minlength="8" id="au_pwd" name="au_pwd" placeholder="영문자 및 숫자 포함 8자 이상" data-error="8자리 이상의 영어 + 숫자 형태로 입력해주세요." >
                     <div class="help-block with-errors"></div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="label_txt must">비밀번호 확인</label>
-                    <input class="form-control" type="password" id="m_pwd2" placeholder="영문자 및 숫자 포함 8자 이상" data-match="#m_pwd" data-match-error="비밀번호가 일치하지 않습니다.다시확인해 주세요.">
+                    <input class="form-control" type="password" id="au_pwd2" placeholder="영문자 및 숫자 포함 8자 이상" data-match="#au_pwd" data-match-error="비밀번호가 일치하지 않습니다.다시확인해 주세요.">
                     <div class="help-block with-errors"></div>
                 </div>
                 <div class="agree_chk">

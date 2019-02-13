@@ -3,26 +3,39 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
-<tiles-definitions>
-	 <definition name="index.html" template="/index.html" />
-	 <definition name="login" template="/login" />
-	 <definition name="sociallogin" template="/WEB-INF/views/user/utility/socialLogin.jsp" />
-	 <!--로그인 페이지로 가기  -->
-     <definition name="*.login" template="/WEB-INF/views/{1}/utility/login.jsp" />
-     <!--회원가입 페이지로 가기  -->
-     <definition name="*.join" template="/WEB-INF/views/{1}/utility/join.jsp" />
-     <definition name="*.*.*" template="/WEB-INF/views/{1}/includes/layout.jsp" >
-     	 <put-attribute name="header"  value="/WEB-INF/views/{1}/includes/header.jsp" />
-         <put-attribute name="footer" value="/WEB-INF/views/{1}/includes/footer.jsp" />
-         <put-attribute name="content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-     </definition>
-     
-     <!--<definition name="velocity.templete" template="/WEB-INF/views/velocity/templete.jsp"/>
-     <definition name="position.leancanvas" template="/WEB-INF/views/leancanvas/leancanbas.jsp"/>
-     <definition name="position.kanban" template="/WEB-INF/views/kanban/kanban.jsp"/>
-     <definition name="position.calendar" template="/WEB-INF/views/calendar/calendar.jsp"/>
-     <definition name="position.checklist" template="/WEB-INF/views/checklist/checklist.jsp"/>
-     <definition name="position.chart" template="/WEB-INF/views/chart/chart.jsp"/>
-     <definition name="position.files" template="/WEB-INF/views/board/fileUpload.jsp"/>
-     <definition name="position.troubleshooting" template="/WEB-INF/views/board/trouble.jsp"/>-->
-</tiles-definitions>
+	<tiles-definitions>
+		 <definition name="index.html" template="/index.html" />
+		 <!-- <definition name="login" template="/login" /> -->
+		 <definition name="sociallogin" template="/WEB-INF/views/user/utility/socialLogin.jsp" />
+		 
+		 <!--로그인 페이지로 가기  -->
+	     <definition name="*.login" template="/WEB-INF/views/{1}/utility/login.jsp" />
+	     
+	     <!--회원가입 페이지로 가기  -->
+	     <definition name="*.join" template="/WEB-INF/views/{1}/utility/join.jsp" />
+	     
+	    <!--컨텐츠 공통(건강,질병,제약정보) // 헤더,푸터,레이아웃 일반인/의사 나뉨  ex)user.health--> <!--  -->
+	     <definition name="health.*" template="/WEB-INF/views/{1}/includes/layout.jsp" >
+	     	 <put-attribute name="header"  value="/WEB-INF/views/{1}/includes/header.jsp" />
+	         <put-attribute name="footer" value="/WEB-INF/views/{1}/includes/footer.jsp" />
+	         <put-attribute name="content" value="/WEB-INF/views/common/health/health.jsp" />
+	     </definition>
+	     
+	     <!--일반인/의사 페이지 완전 나뉘는것 ex)doctor.index.index --> <!--의사/일반인 리소스 layout 별로 나뉨  -->
+	     <definition name="*.*.*" template="/WEB-INF/views/{1}/includes/layout.jsp" >
+	     	 <put-attribute name="header"  value="/WEB-INF/views/{1}/includes/header.jsp" />
+	         <put-attribute name="footer" value="/WEB-INF/views/{1}/includes/footer.jsp" />
+	         <put-attribute name="content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	     </definition>
+	     
+	      
+	     
+	     <!--<definition name="velocity.templete" template="/WEB-INF/views/velocity/templete.jsp"/>
+	     <definition name="position.leancanvas" template="/WEB-INF/views/leancanvas/leancanbas.jsp"/>
+	     <definition name="position.kanban" template="/WEB-INF/views/kanban/kanban.jsp"/>
+	     <definition name="position.calendar" template="/WEB-INF/views/calendar/calendar.jsp"/>
+	     <definition name="position.checklist" template="/WEB-INF/views/checklist/checklist.jsp"/>
+	     <definition name="position.chart" template="/WEB-INF/views/chart/chart.jsp"/>
+	     <definition name="position.files" template="/WEB-INF/views/board/fileUpload.jsp"/>
+	     <definition name="position.troubleshooting" template="/WEB-INF/views/board/trouble.jsp"/>-->
+	</tiles-definitions>
