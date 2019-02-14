@@ -35,11 +35,10 @@
 <security:authentication-manager>
 	<security:authentication-provider>
 		<security:jdbc-user-service
-			authorities-by-username-query="select au_email, au_pwd from auth where au_email=?"
-			users-by-username-query="select au_email, au_pwd , 1 au_enabled from auth where au_email=?"
+			authorities-by-username-query="select au_email, roll_code from auth where au_email=?"
+			users-by-username-query="select au_email, au_pwd as password , 1 au_enabled from auth where au_email=?"
 			data-source-ref="driverManagerDataSource"
 		/><!-- db연결 -->
-		
 		<security:password-encoder ref="bCryptPasswordEncoder" />
 	</security:authentication-provider>
 </security:authentication-manager>

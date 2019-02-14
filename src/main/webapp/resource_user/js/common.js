@@ -70,7 +70,7 @@ $(document).ready(function() {
     
     $(window).scroll(function() {
         var st = $(this).scrollTop();
-        var reviewOffset = $('.review_list').offset();
+        /*var reviewOffset = $('.review_list').offset();*/
         var footOffset =$('.footer_m').offset();
         var scroll_t = $(document).scrollTop();
         var multipleh = st + scroll_t;
@@ -79,11 +79,11 @@ $(document).ready(function() {
             $('.review_btn').removeClass("fixed");
         } else { // downscroll code
             $('.footer_m').removeClass("fixed");
-            if (multipleh <= reviewOffset.top) {
+            /*if (multipleh <= reviewOffset.top) {
                 $('.review_btn').addClass("fixed");
             }else{
                  $('.review_btn').removeClass("fixed");
-            }      
+            }   */   
         }
         ScrollTop = st;
     });
@@ -111,12 +111,12 @@ $(document).ready(function() {
         $($(this).attr('href')).show();
     });
 
-     $('.stars').rating({
+/*     $('.stars').rating({
         filledStar:'<i class="fa fa-star"></i>',
         emptyStar: '<i class="fa fa-star"></i>',
         min:0, 
         max:5,
         starCaptions: {0.5: '0.5(별로에요)',1: '1.0(별로에요)',1.5: '1.5(그저그래요)', 2: '2.0(그저그래요)', 2.5: '2.5(괜찮아요)',3: '3.0(괜찮아요)', 3.5: '3.5(좋아요)',4: '4.0(좋아요)', 4.5: '4.5(좋아요)',5: '5.0(최고에요)'},
         // starCaptionClasses: {1: 'text-danger', 2: 'text-warning', 3: 'text-info', 4: 'text-primary', 5: 'text-success'}
-    });
+    });*/
 });

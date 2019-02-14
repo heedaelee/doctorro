@@ -399,6 +399,7 @@ input.file_btn[type="file"]{width:22px;height:22px;opacity:0;text-indent:-9999em
 .health_img img{width: 100%;max-width: 100%;height: auto;}
 .health_img .health_label{position: absolute;color: #fff;font-size:13px;font-weight:500;bottom:0;left:0;padding: 3px 12px 4px;background: #5ed3d7}
 .health_txt{height:57px;max-height:57px;font-size:14px;color: #424242;font-weight:500;line-height: 1.4;padding:0 6px;}
+.health_txt{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}
 .health_txt span{display: block;font-size:14px;color: #5ed3d7;font-weight:500;}
 .view_info{text-align: right;padding: 0 10px;margin-top: 20px}
 .view_info span{display: inline-block;color: #9b9b9b;font-size:13px;}

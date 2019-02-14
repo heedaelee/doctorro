@@ -64,7 +64,7 @@ public class JoinController {
         }/*이메일 체크 끝*/
         System.out.println("이메일 중복 통과");
         //암호화
-        memberDTO.setAu_pwd(bCryptPasswordEncoder.encode(memberDTO.getAu_email()));
+        memberDTO.setAu_pwd(bCryptPasswordEncoder.encode(memberDTO.getAu_pwd()));
         //social 간편 로그인 아닐시 so_code=1 디폴트값 넣기
         memberDTO.setSo_code(1);
         //기본 포인트 3,000점 m_point =3000점

@@ -140,6 +140,10 @@ public class LoginController {
     		//pwd체크
     		System.out.println("pwd체크 탐");
     		result = loginService.getPass(member);
+    		System.out.println(member.getAu_pwd());
+    		System.out.println("내가 친거 :"+bCryptPasswordEncoder.encode(member.getAu_pwd()));
+    		System.out.println("갖고 온거 :"+result);
+    		System.out.println(result);
     		boolean re = bCryptPasswordEncoder.matches(member.getAu_pwd(), result);
     		System.out.println("pwd체크 일치여부 :"+re);
     		if(re) {

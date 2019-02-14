@@ -14,20 +14,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no viewport-fit=cover">
     <title>dr.Ro</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/slick.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/base.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/common.css" />
+    
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/slick.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/common.css" />
     <!--네이버 로그인 추가  -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <!--네이버 로그인 추가 종료  -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/validator.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/slick.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/common.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/validator.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/slick.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/common.js"></script>
     <!--카카오톡 로그인  -->
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!--[if lt IE 9]>
@@ -43,16 +47,17 @@ $(document).ready(function() {
 	var na="${naver.au_email}"
 	var nap="${naver.au_pwd}"
 	if(na){
-		alert(na);
+		/* alert(na); */
 		$('#au_email').val(na);
 		$('#au_pwd').val(nap);
+		/* alert('로그인 발송 바로 전'+$('#au_pwd').val()); */
 		login();
 	}
 	//구글
 	var go="${google.au_email}"
 	var gop="${google.au_pwd}"
 	if(go){
-		alert(go);
+		/* alert(go); */
 		$('#au_email').val(go);
 		$('#au_pwd').val(gop);
 		login();
@@ -234,7 +239,8 @@ $(document).ready(function() {
             <div class="title_box hidden-xs">
                 <h3 class="title">로그인</h3>
             </div>
-            <div class="login_form">
+            <div class="login_wrap">
+           	  <div class="login_form">
                 <form method="post" data-toggle="validator" role="form" id="loginForm" action='${pageContext.request.contextPath}/login'>
                     <div class="">
                         <strong class="form_title">이메일</strong>
@@ -276,6 +282,10 @@ $(document).ready(function() {
                     </div>
                 </div>
             </div>
+            <div class="bottom_btn">
+                    <a href="${pageContext.request.contextPath}/user/index" class="btn btn_aqua_br w100">다음에 하기</a>
+            </div>
+          </div>
         </div>
     </div>
     <!--// container -->

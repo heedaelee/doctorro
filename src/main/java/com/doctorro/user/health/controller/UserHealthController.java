@@ -12,35 +12,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.doctorro.common.PagingDTO;
 import com.doctorro.user.health.dto.HealthDto;
 import com.doctorro.user.join.dto.MemberDTO;
 
 @Controller
-@RequestMapping(value = "/user/")
+@RequestMapping(value = "/user/", method = { RequestMethod.POST, RequestMethod.GET })
 public class UserHealthController {
 
-/*	@Autowired
-	private IndexService service;*/
-	
     @RequestMapping("health")
-    public String userHealth(Model model, Principal principal, HttpServletRequest request ) {
+    public String userHealth(Model model, Principal principal, HttpServletRequest request,PagingDTO paging ) {
     	System.out.println("유저헬스 컨트롤탐");
     	
     	int page=1;
-    	if(request.getParameter("page")!=null){
-    		page = Integer.parseInt(request.getParameter("page"));
-    	}
+    	int realPageNumber=paging.getIndex()+1;
     	
-    	List<HealthDto> list = parse(page);
+    	//api 자료 total list
+    	int totalCount = parseTotalCount();
+    	System.out.println("전체 자료 갯수"+totalCount);
+    	//paging dto에 전체 자료 갯수 삽입
+    	paging.setTotal(totalCount);
+    	
+    	//현재 page 입력시 45개 자료 get
+    	List<HealthDto> list = parse(realPageNumber);
     	
     	model.addAttribute("list", list);
+    	model.addAttribute("p", paging);
+    	model.addAttribute("totalCount", totalCount);
     	
-    	System.out.println("컨트롤러 최종 값"+ list);
+    	System.out.println("컨트롤러 최종 값"+ list.toString());
+    	System.out.println("페이징 : " + paging.toString());
+		System.out.println("게시글 총갯수 : " + totalCount);
     	//=================================================작업중
         return "health.user";
     }
@@ -55,17 +63,37 @@ public class UserHealthController {
 	    return nValue.getNodeValue();
 	}
     
+	//api 자료 전체 리스트 갯수 return
+	public int parseTotalCount() {
+		int totalCount=0;
+		try{
+		String url = "http://openapi.samsunghospital.com/service/healthstoryapi/healthstory?numOfRows="+"1";
+		url +="&accessKey=AAABaC6Dvn88ZkLs9RJiOB%2By6KWs70rUOq0kwA%3D%3D&pageNo="+"1";
+		
+		DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
+		Document doc = dBuilder.parse(url);
+		
+		//전체 토탈 카운트
+		NodeList totalList = doc.getElementsByTagName("body");
+		Node totalNode =  totalList.item(0);
+		Element totalEl = (Element) totalNode;
+		System.out.println("총갯수 xhdd  : " + getTagValue("totalCount", totalEl)); 
+		totalCount= Integer.parseInt(getTagValue("totalCount", totalEl));
+		
+	}catch (Exception e) {
+		e.printStackTrace();
+	}
+		return totalCount;
+}
 	
 	
     public List<HealthDto> parse(int page) {
     	 
-		int numOfRow = 9;
-		
+		int numOfRow = 9;//each page 9개씩 출력 
 		List<HealthDto> list = new ArrayList<HealthDto>();
 		try{
-			 
-			
-			while(true){
+			//while(true){
 				// parsing할 url 지정(API 키 포함해서)
 				String url = "http://openapi.samsunghospital.com/service/healthstoryapi/healthstory?numOfRows="+numOfRow;
 						url +="&accessKey=AAABaC6Dvn88ZkLs9RJiOB%2By6KWs70rUOq0kwA%3D%3D&pageNo="+page;
@@ -82,6 +110,15 @@ public class UserHealthController {
 				NodeList nList = doc.getElementsByTagName("item");
 				System.out.println("파싱할 리스트 수 : "+ nList.getLength());
 				
+				//전체 토탈 카운트 - 일단 중복.추후 삭제
+				/*
+				 * NodeList totalList = doc.getElementsByTagName("body");
+				Node totalNode =  totalList.item(0);
+				Element totalEl = (Element) totalNode;
+				System.out.println("총갯수  : " + getTagValue("totalCount", totalEl)); 
+				int totalCount = Integer.parseInt(getTagValue("totalCount", totalEl));
+				*/
+				
 				for(int temp = 0; temp < nList.getLength(); temp++){
 					Node nNode = nList.item(temp);
 					if(nNode.getNodeType() == Node.ELEMENT_NODE){
@@ -92,7 +129,7 @@ public class UserHealthController {
 						System.out.println("컨텐츠 아이디  : " + getTagValue("contId", eElement));
 						System.out.println("컨텐츠 제목  : " + getTagValue("contTitle", eElement));
 						System.out.println("컨텐츠 소스 : " + getTagValue("contSrc", eElement));
-						System.out.println("컨텐츠 요약 내용  : " + getTagValue("Summary", eElement));
+						System.out.println("컨텐츠 요약 내용  : " + getTagValue("summary", eElement));
 						System.out.println("컨텐츠 요약 내용  : " + getTagValue("thumImg", eElement));
 						System.out.println("모바일용 썸네일 : " + getTagValue("mThumImg", eElement));
 						System.out.println("컨텐츠 타입 : " + getTagValue("contType", eElement));
@@ -106,7 +143,7 @@ public class UserHealthController {
 						healthDto.setContId(Integer.parseInt(getTagValue("contId", eElement)));
 						healthDto.setContTitle(getTagValue("contTitle", eElement));
 						healthDto.setContSrc(getTagValue("contSrc", eElement));
-						healthDto.setSummary(getTagValue("Summary", eElement));
+						healthDto.setSummary(getTagValue("summary", eElement));
 						healthDto.setThumImg(getTagValue("thumImg", eElement));
 						healthDto.setMThumImg(getTagValue("mThumImg", eElement));
 						healthDto.setContType(getTagValue("contType", eElement));
@@ -126,7 +163,7 @@ public class UserHealthController {
 					break;
 				}*/
 				
-			}	// while end
+			//}	// while end
 			
 		} catch (Exception e){	
 			e.printStackTrace();
