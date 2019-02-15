@@ -56,7 +56,7 @@
 		<property name="scope"
 			value="https://www.googleapis.com/auth/userinfo.email"></property>
 		<property name="redirectUri"
-			value="http://localhost:8080/doctorro/user/googleSignInCallback" />
+			value="http://dev.rsad.co.kr/doctorro/user/googleSignInCallback" />
 	</bean>
 
 	<!-- Jdbc 템플릿 설정 -->

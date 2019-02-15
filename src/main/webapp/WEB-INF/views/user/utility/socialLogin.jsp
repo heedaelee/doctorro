@@ -7,25 +7,18 @@
 </head>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
- $(document).ready(function() {
-	 console.log('${pageContext.request.contextPath}');
-	 var au_email = '${au_email}';
-	var au_pwd = '${au_pwd}';
-	
-	/* $.ajax({
-		type : 'post',
-		url : '${pageContext.request.contextPath}/login',
-		data : {
-			"au_email" : au_email,
-			"au_pwd" : au_pwd
-			},
-		success : function() {
-				 location.href = "${pageContext.request.contextPath}/user/index"; 
-			}   
-		}); */ 
-}) 
+function calls()
+{
+	/* alert(document.getElementById("au_email").value); */
+var f = document.getElementById("loginForm"); // form 엘리멘트 생성 
+f.submit();
+}
 </script>
-<body>
+<body onload="calls()">
+<form method="post" id="loginForm" action='${pageContext.request.contextPath}/login'>
+<input class="form-control" type="hidden" id="au_email" name="au_email" value="${naver.au_email}" placeholder="수신 가능한 이메일을 입력해 주세요"   />
+<input class="form-control" type="hidden" name="au_pwd"  id="au_pwd" value="${naver.au_pwd}" placeholder="비밀번호를 입력해 주세요"   />
+</form>
 
 </body>
 </html>

@@ -28,8 +28,22 @@
 	</select> 
 	
     <insert id="insertUser" parameterType="com.doctorro.user.join.dto.MemberDTO">
-      insert into user (au_seq,m_nick,m_img,m_regdate,m_gender,m_mPush,m_mMail,so_code)
-      values(#{au_seq},#{m_nick},#{m_img},NOW(),#{m_gender},#{m_mPush},#{m_mMail},#{so_code})
+      insert into user (au_seq,m_nick,m_img,m_regdate,m_gender,m_mPush,m_mMail,so_code
+      	<if test="m_mPush != null">
+      	,m_mPushdate
+      	</if>
+      	<if test="m_mMail != null">
+      	,m_mMaildate
+      	</if>
+      	)
+      values(#{au_seq},#{m_nick},#{m_img},NOW(),#{m_gender},#{m_mPush},#{m_mMail},#{so_code}
+     	 <if test="m_mPush != null">
+      	,NOW()
+      	</if>
+      	<if test="m_mMail != null">
+      	,NOW()
+      	</if>
+      	)
   	</insert>
 
 </mapper>

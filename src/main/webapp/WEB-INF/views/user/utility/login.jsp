@@ -40,7 +40,7 @@
     <![endif]-->
 </head>
 <script>
-$(document).ready(function() {
+$(document).ready(function() { 
 	 console.log('${pageContext.request.contextPath}dd');
 	
 	//네이버
@@ -48,25 +48,31 @@ $(document).ready(function() {
 	var nap="${naver.au_pwd}"
 	if(na){
 		/* alert(na); */
-		$('#au_email').val(na);
-		$('#au_pwd').val(nap);
+		 $('#sau_email').val(na);
+		$('#sau_pwd').val(nap); 
 		/* alert('로그인 발송 바로 전'+$('#au_pwd').val()); */
-		login();
+		sociallogin();
 	}
 	//구글
 	var go="${google.au_email}"
 	var gop="${google.au_pwd}"
 	if(go){
 		/* alert(go); */
-		$('#au_email').val(go);
-		$('#au_pwd').val(gop);
-		login();
+		 $('#au_email').val(go);
+		$('#au_pwd').val(gop); 
+		sociallogin();
 	}	
 	
 	//로그인 처리
 	 $('#login').click(function() {
-		 event.preventDefault()
-		 alert('아뒤'+$('#au_email').val() + '\n'+ '비번'+$('#au_pwd').val());
+		 event.preventDefault();
+		 /* alert('아뒤'+$('#au_email').val() + '\n'+ '비번'+$('#au_pwd').val()); */
+		 if($('#au_email').val()==""||!$('#au_pwd').val()){
+			 $('#alertmsg').text('이메일 또는 비밀번호를 입력해주세요');
+				$('#alertmsg2').text('');
+				$('#au_pwd').val("");
+             $('#alert_pop').modal();
+		 }
 		 
 		$.ajax({
 			type:'post',
@@ -77,32 +83,19 @@ $(document).ready(function() {
 					},
 				success : function(data) {
 					if (data == "success") {
-						/*로그인 형식 no ajax 변경
-						$.ajax({
-							type : 'post',
-							async : false,
-							url : '${pageContext.request.contextPath}/login',
-							data : {
-								"au_email" : $('#au_email').val(),
-								"au_pwd" : $('#au_pwd').val()
-								},
-							success : function() {
-									 location.href = "${pageContext.request.contextPath}/user/index";  
-								}
-							}) */
 							login();
 						}
 					 if (data == "idfail") {
-						$('#alertmsg').text('아이디가 존재하지 않습니다.');
+						$('#alertmsg').text('일치하는 정보가 없습니다.');
+						$('#alertmsg2').text('이메일 또는 비밀번호를 다시 확인하세요');
 						$('#au_pwd').val("");
 	                    $('#alert_pop').modal();
-						/* location.href = "login?error=id"; */ 
 						} 
 					if (data == "passfail") {
-						$('#alertmsg').text('비밀번호가 맞지 않습니다.');
+						$('#alertmsg').text('일치하는 정보가 없습니다.');
+						$('#alertmsg2').text('이메일 또는 비밀번호를 다시 확인하세요');
 						$('#au_pwd').val("");
 						$('#alert_pop').modal();
-						/* location.href = "login?error=pass"; */ 
 						}  
 				},
 				error : function(error) {
@@ -118,6 +111,9 @@ $(document).ready(function() {
 	function login() {
 			$('#loginForm').submit();
 	}
+	 function sociallogin() {
+			$('#SocialloginForm').submit();
+	}
 	
 	$('#alert_pop').click(function(){
 		if($('#alertmsg').text()=='아이디가 존재하지 않습니다.'||$('#alertmsg').text()=='로그인에 실패하였습니다.'){
@@ -126,13 +122,14 @@ $(document).ready(function() {
 	   }
 	)
 	
-	$(function(){
   /*카카오톡 로그인  */ 
   Kakao.init('f2911550662316c4cd821fd8300158df');
-  
-  // 카카오 로그인 버튼을 생성합니다.
-  Kakao.Auth.createLoginButton({
-    container: '#kakao-login-btn',
+ $('#custom-login-btn').click(function(){
+	 loginWithKakao();
+ })
+	function loginWithKakao() {
+  // 로그인 창을 띄웁니다.
+  Kakao.Auth.login({
     success: function(authObj) {
         // 로그인 성공시, API를 호출합니다.
         Kakao.API.request({
@@ -151,16 +148,6 @@ $(document).ready(function() {
         		  if(data =="success"){
         			  $('#au_email').val(res.kakao_account.email);
         			  $('#au_pwd').val(res.id);
-        			  /* $.ajax({
-                          type : 'post',
-                          url : '${pageContext.request.contextPath}/login',
-                          data :{"au_email":res.kakao_account.email,
-                        	  	 "au_pwd" : res.id},
-                          success : function(){
-                        	  alert('${pageContext.request.contextPath}/user/index')
-                        	  location.href="${pageContext.request.contextPath}/user/index";
-                          }
-                          }); */
         			  login();
         		  }if(data=="idfail"){
         			  $.ajax({
@@ -179,15 +166,6 @@ $(document).ready(function() {
         		          		 alert(data.au_email+data.au_pwd);
         		          		  $('#au_email').val(res.kakao_account.email);
         	        			  $('#au_pwd').val(res.id);
-        		          		  /* $.ajax({
-        		                      type : 'post',
-        		                      url : '${pageContext.request.contextPath}/login',
-        		                      data :{"au_email":data.au_email,
-        		                    	  	 "au_pwd" : data.au_pwd},
-        		                      success : function(){
-        		                    	   location.href="${pageContext.request.contextPath}/user/index"; 
-        		                      }
-        		                      }); */
         	        			  login();
         		          	 }	
         		          	  ,
@@ -197,26 +175,26 @@ $(document).ready(function() {
         				             console.log(error);
         				             console.log(error.status);
         				       }
-        		   	})
-        			  
-        		  }
-        	  }
-          
-          })
-      
-          },
-          fail: function(error) {
-            alert(JSON.stringify(error));
-          }
-        });
-      },
-      fail: function(err) {
-        alert(JSON.stringify(err));
-      }
-    });
- })
-		 
-	})
+	        		   	})
+	        			  
+	        		  }
+	        	  }
+	          
+	          })
+	      
+	          },
+	          fail: function(error) {
+	            alert(JSON.stringify(error));
+	          }
+	        });
+	      },
+	      fail: function(err) {
+	        alert(JSON.stringify(err));
+	      }
+	    });
+	 }
+	 
+ }) 
 </script>
 <body>
 <div class="util_wrap">
@@ -246,13 +224,13 @@ $(document).ready(function() {
                         <strong class="form_title">이메일</strong>
                         <div class="form-group">
                             <label for="" class="sr-only">이메일</label>
-                            <input class="form-control" type="email" id="au_email" name="au_email"  placeholder="수신 가능한 이메일을 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
+                            <input class="form-control" type="email" id="au_email" name="au_email"  placeholder="가입 시 입력한 이메일 주소를 입력해 주새요"   />
                             <div class="help-block with-errors"></div>
                         </div>
                         <strong class="form_title">비밀번호</strong>
                         <div class="form-group">
                             <label for="" class="sr-only">비밀번호</label>
-                            <input class="form-control" type="password" name="au_pwd"  id="au_pwd" data-minlength="8" placeholder="비밀번호를 입력해 주세요" data-error="입력하신 정보가  올바르지 않습니다, 다시 한번 입력해 주세요." required />
+                            <input class="form-control" type="password" name="au_pwd"  id="au_pwd"  placeholder="가입 시 입력한 비밀번호를 입력해 주새요"   />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group check_box">
@@ -270,13 +248,17 @@ $(document).ready(function() {
                         <span>|</span>
                         <a href="search_id.html">비밀번호 찾기</a>
                     </div>
-                </form> 
+                </form>
+                <form method="post" id="SocialloginForm" action='${pageContext.request.contextPath}/login'>
+					<input class="form-control" type="hidden" id="sau_email" name="au_email" value="" placeholder="수신 가능한 이메일을 입력해 주세요"   />
+					<input class="form-control" type="hidden" id="sau_pwd" name="au_pwd"  value="" placeholder="비밀번호를 입력해 주세요"   />
+				</form> 
             </div>
             <div class="sns_wrap">
                 <div class="sns_inner">
                     <strong>SNS 계정 로그인</strong>
                     <div class="sns_login">
-                        <a class="btn btn_kakao" id="kakao-login-btn">카카오톡으로 로그인</a>
+                        <a class="btn btn_kakao" id="custom-login-btn" >카카오톡으로 로그인</a>
                         <a href="${naverAuthUrl}" class="btn btn_naver" id="naver_id_login">네이버로 로그인</a>
                         <a href="${google_url}" class="btn btn_google" id="google">구글로 로그인</a>
                     </div>
@@ -318,7 +300,7 @@ $(document).ready(function() {
                 <div class="modal-body">
                     <div class="modal_con">
                         <p id="alertmsg">가입되지 않은 정보입니다.</p>
-                        <p>다시 확인해 주세요</p>
+                        <p id="alertmsg2">다시 확인해 주세요</p>
                     </div>
                     <div class="pop_bottom_btn">
                         <!-- 확인버튼 -->
