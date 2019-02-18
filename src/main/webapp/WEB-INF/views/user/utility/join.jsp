@@ -69,8 +69,7 @@ $('#submit').click(function () {
         $('#au_pwd').focus();
         return false;
     }
-    else if(!$('#check01').is(":checked")||!$('#check02').is(":checked")
-    	||!$('#check03').is(":checked")||!$('#check04').is(":checked")){
+    else if(!$('#check01').is(":checked")||!$('#check02').is(":checked")){
     	$('#alertmsg').text('필수 약관에 동의해 주세요');
         $('#alert_pop').modal();
         $('#au_pwd').focus();
@@ -194,12 +193,12 @@ $('#submit').click(function () {
                     </div>
                     <div class="form-group check_box">
                         <input class="form-control checkSel" type="checkbox" id="check01">
-                        <label for="check01" class="">서비스 이용약관에 동의합니다.</label>
+                        <label for="check01" class="must">서비스 이용약관에 동의합니다.</label>
                         <a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html#">자세히 보기</a>
                     </div>
                     <div class="form-group check_box">
                         <input class="form-control checkSel" type="checkbox" id="check02">
-                        <label for="check02" class="">개인정보 처리방침에 동의합니다.</label>
+                        <label for="check02" class="must">개인정보 처리방침에 동의합니다.</label>
                         <a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html#">자세히 보기</a>
                     </div>
                     <div class="form-group check_box">

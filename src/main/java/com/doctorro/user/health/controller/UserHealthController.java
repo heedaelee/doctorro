@@ -90,7 +90,7 @@ public class UserHealthController {
 	
     public List<HealthDto> parse(int page) {
     	 
-		int numOfRow = 9;//each page 9개씩 출력 
+		int numOfRow = 10;//each page 9개씩 출력 
 		List<HealthDto> list = new ArrayList<HealthDto>();
 		try{
 			//while(true){
@@ -109,15 +109,6 @@ public class UserHealthController {
 				// 파싱할 tag
 				NodeList nList = doc.getElementsByTagName("item");
 				System.out.println("파싱할 리스트 수 : "+ nList.getLength());
-				
-				//전체 토탈 카운트 - 일단 중복.추후 삭제
-				/*
-				 * NodeList totalList = doc.getElementsByTagName("body");
-				Node totalNode =  totalList.item(0);
-				Element totalEl = (Element) totalNode;
-				System.out.println("총갯수  : " + getTagValue("totalCount", totalEl)); 
-				int totalCount = Integer.parseInt(getTagValue("totalCount", totalEl));
-				*/
 				
 				for(int temp = 0; temp < nList.getLength(); temp++){
 					Node nNode = nList.item(temp);

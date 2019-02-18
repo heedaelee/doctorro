@@ -16,8 +16,6 @@ public class MemberDTO {
 	private String au_pwd;
 	private String roll_code;
 	private String au_enabled;
-	
-    private int m_seq;
     
     private int so_code;
     @NotNull @Size(max=10)
