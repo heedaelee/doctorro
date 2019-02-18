@@ -32,23 +32,46 @@
 $(document).ready(function(){
 
 //회원가입 & 유효성 체크
-var pwdRule=/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/; 
+//패스워드 체크
+var pwdRule=/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
+//이메일이 적합한지 검사할 정규식
+var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+
 $('#submit').click(function () {
 	console.log('제출');
-    if($('#m_nick').val() === "" || $('#m_nick').val().length>10 ){
-        $('#alertmsg').text('닉네임 형식이 바르지 않습니다');
+	if($('#m_nick').val() == "" ||
+	   $('#au_email').val() == "" ||
+	   $('#au_pwd').val() == "" ||
+	   $('#au_pwd2').val() == "" ){
+        $('#alertmsg').text('필수 항목을 입력해 주세요');
         $('#alert_pop').modal();
         $('#m_nick').focus();
         return false;
-    }else if(!pwdRule.test($('#au_pwd').val())){
+    }
+    if($('#m_nick').val() === "" || $('#m_nick').val().length>10 ){
+        $('#alertmsg').text('최대10자의 닉네임을 입력해주세요');
+        $('#alert_pop').modal();
+        $('#m_nick').focus();
+        return false;
+    }
+    else if(!re2.test($('#au_email').val())){
+    	console.log($('#au_email').val());
+        $('#alertmsg').text('이메일 형식을 다시 확인해 주세요');
+        $('#alert_pop').modal();
+        $('#au_email').focus();
+        return false;
+    }
+    else if(!pwdRule.test($('#au_pwd').val())){
     	console.log($('#au_pwd').val());
         $('#alertmsg').text('패스워드 형식이 바르지 않습니다');
         $('#alert_pop').modal();
         $('#au_pwd').focus();
         return false;
-    }else if(!$('#check01').is(":checked")||!$('#check02').is(":checked")
+    }
+    else if(!$('#check01').is(":checked")||!$('#check02').is(":checked")
     	||!$('#check03').is(":checked")||!$('#check04').is(":checked")){
-    	$('#alertmsg').text('약관에 동의 해야 합니다');
+    	$('#alertmsg').text('필수 약관에 동의해 주세요');
         $('#alert_pop').modal();
         $('#au_pwd').focus();
         return false;

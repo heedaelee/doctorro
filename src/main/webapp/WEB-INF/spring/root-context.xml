@@ -63,4 +63,5 @@
 	<bean id="dataSource" class="org.springframework.jdbc.core.JdbcTemplate" >
 		<property name="dataSource" ref="driverManagerDataSource"></property>
 	</bean>
+	
 </beans>

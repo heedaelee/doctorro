@@ -1,15 +1,21 @@
 package com.doctorro.user.login.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.naming.Context;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 
+import org.apache.http.HttpResponse;
+import org.omg.PortableInterceptor.ForwardRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.social.connect.Connection;
@@ -24,11 +30,13 @@ import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.doctorro.user.join.dto.MemberDTO;
 import com.doctorro.user.join.service.JoinService;
@@ -262,11 +270,19 @@ public class LoginController {
     
     
     //test
-    @RequestMapping("test")
+    /*@RequestMapping("test")
     public View test(String test, Model model) {
     	System.out.println("테스트 성공");
     	model.addAttribute("data", "data");
     	return jsonview;
-    }
-    
+    }*/
+    /*@RequestMapping("test1")
+    public void test(Model Model, HttpServletRequest request, HttpServletResponse response) throws ServletException, Exception {
+    	System.out.println("test컨트 탐1");
+        request.setAttribute("au_email", "1@1.com");
+        request.setAttribute("au_pwd", "1111111q");
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/logina");
+        requestDispatcher.forward(request, response);
+    }*/
 }

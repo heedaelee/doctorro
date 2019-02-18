@@ -67,11 +67,12 @@ $(document).ready(function() {
 	 $('#login').click(function() {
 		 event.preventDefault();
 		 /* alert('아뒤'+$('#au_email').val() + '\n'+ '비번'+$('#au_pwd').val()); */
-		 if($('#au_email').val()==""||!$('#au_pwd').val()){
+		 if($('#au_email').val()==""||$('#au_pwd').val()==""){
 			 $('#alertmsg').text('이메일 또는 비밀번호를 입력해주세요');
 				$('#alertmsg2').text('');
 				$('#au_pwd').val("");
              $('#alert_pop').modal();
+             return;
 		 }
 		 
 		$.ajax({
