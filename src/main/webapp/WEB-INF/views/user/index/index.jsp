@@ -3,6 +3,19 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <!-- 시큐리티 태그 삽입 -->
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
+<c:if test="${sessionScope.join != null}">
+				<script type="text/javascript">
+				$(function(){
+					$('#alertmsg').text('회원가입이 완료되었습니다.');
+					$('#alertmsg2').text('');
+					$('#alert_pop').modal();
+				})
+				</script>
+		<c:remove var="join" scope="session"/>
+</c:if>
+<script>
+</script>
+
 		<div class="contents" style=";background: #ff00ff">
             
             <div class="title_box hidden-xs">

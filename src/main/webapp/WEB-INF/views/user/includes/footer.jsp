@@ -1,11 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: adguy
-  Date: 2019-01-25
-  Time: 오후 2:18
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- footer web -->
     <div class="footer hidden-xs">
         <p class="copy">Ⓒ Doktoro. All rights reserved</p>
@@ -22,3 +16,36 @@
         </ul>
     </footer>
     <!--// footer -->
+    
+    <!-- alert -->
+    <div class="modal fade modal-center" id="alert_pop">
+        <div class="modal-dialog sm alert_pop">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title">알림</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal_con">
+                        <p id="alertmsg">가입되지 않은 정보입니다.</p>
+                        <p id="alertmsg2">다시 확인해 주세요</p>
+                    </div>
+                    <div class="pop_bottom_btn">
+                        <!-- 확인버튼 -->
+                        <button class="btn w100" data-dismiss="modal" id="okay">확인</button>
+
+                        <!-- 취소/확인 버튼 -->
+                        <!-- <button class="btn" data-dismiss="modal">취소</button>
+                        <button class="btn w100">확인</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--// alert -->
+<c:if test="${pageName == 'login'}">
+</div>
+</body>
+
+</html>
+</c:if>

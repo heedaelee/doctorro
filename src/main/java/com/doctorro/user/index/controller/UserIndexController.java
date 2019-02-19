@@ -3,6 +3,7 @@ package com.doctorro.user.index.controller;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +21,9 @@ public class UserIndexController {
 	private IndexService service;
 	
     @RequestMapping("index")
-    public String index(Model model, Principal principal, HttpServletRequest request ) {
-    	
+    public String index(Model model, Principal principal, HttpServletRequest request, HttpSession session ) {
+    	//타일즈 설정
+    	model.addAttribute("pageName", "main");
 	    /*	유저 로그인 인증 후
 	    	 param : au_email
 	    	 return : dto(유저정보)	*/
@@ -31,9 +33,9 @@ public class UserIndexController {
 			System.out.println("로그인 후 정보 받기 : principal 받아 session에 입력한 email :"+request.getSession().getAttribute("au_email"));
 			userdto = service.getUser(principal.getName());
 			model.addAttribute("userdto", userdto);
+			
 		return "user.index.index";
 	}
-    	
         return "user.index.index";
     }
 }

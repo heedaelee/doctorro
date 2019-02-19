@@ -14,7 +14,7 @@
 	<!-- 로그인 -->
 	<security:http>
 	<security:csrf disabled="true" />
-	<security:form-login login-page="/login"
+	<security:form-login login-page="/login" 
 	always-use-default-target="true"
 	    authentication-failure-url="/user/login?error=security"
 	    default-target-url="/user/index"

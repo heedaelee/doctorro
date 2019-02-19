@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="utf-8">
@@ -22,9 +22,9 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/slick.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/base.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/common.css" />
-    <!--네이버 로그인 추가  -->
+    <!--네이버 로그인 추가  
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-    <!--네이버 로그인 추가 종료  -->
+    네이버 로그인 추가 종료  -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/bootstrap.min.js"></script>
@@ -32,13 +32,13 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/validator.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/slick.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/common.js"></script>
-    <!--카카오톡 로그인  -->
-    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <!--카카오톡 로그인 
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head>
+</head> --%>
 <script>
 $(document).ready(function() { 
 	 console.log('${pageContext.request.contextPath}dd');
@@ -58,15 +58,15 @@ $(document).ready(function() {
 	var gop="${google.au_pwd}"
 	if(go){
 		/* alert(go); */
-		 $('#au_email').val(go);
-		$('#au_pwd').val(gop); 
+		 $('#sau_email').val(go);
+		$('#sau_pwd').val(gop); 
 		sociallogin();
 	}	
 	
 	//로그인 처리
 	 $('#login').click(function() {
-		 event.preventDefault();
-		 /* alert('아뒤'+$('#au_email').val() + '\n'+ '비번'+$('#au_pwd').val()); */
+		  event.preventDefault(); 
+		  /* alert('아뒤'+$('#au_email').val() + '\n'+ '비번'+$('#au_pwd').val()); */ 
 		 if($('#au_email').val()==""||$('#au_pwd').val()==""){
 			 $('#alertmsg').text('이메일 또는 비밀번호를 입력해주세요');
 				$('#alertmsg2').text('');
@@ -105,7 +105,6 @@ $(document).ready(function() {
 		             console.log(error);
 		             console.log(error.status);
 		          }
-			
 		})
 	})
 	
@@ -136,7 +135,7 @@ $(document).ready(function() {
         Kakao.API.request({
           url: '/v2/user/me',
           success: function(res) {
-        	  alert(res);
+        	  /* alert(res); */
           $.ajax({
         	  type:'post',
         	  url:'${pageContext.request.contextPath}/user/logincheck',
@@ -164,10 +163,10 @@ $(document).ready(function() {
         		         	  	  	},
         		             dataType:"json",
         		          	 success : function(data) {
-        		          		 alert(data.au_email+data.au_pwd);
-        		          		  $('#au_email').val(res.kakao_account.email);
-        	        			  $('#au_pwd').val(res.id);
-        	        			  login();
+        		          		 /* alert(data.au_email+data.au_pwd); */
+        		          		  $('#sau_email').val(res.kakao_account.email);
+        	        			  $('#sau_pwd').val(res.id);
+        	        			  sociallogin();
         		          	 }	
         		          	  ,
         		             error : function(error) {
@@ -273,13 +272,13 @@ $(document).ready(function() {
     </div>
     <!--// container -->
     <!-- footer web -->
-    <div class="footer hidden-xs">
+    <!-- <div class="footer hidden-xs">
         <div class="inner_wrap">
             <p class="copy">&copy; Doktoro.All right served</p>
         </div>
     </div>
-    <!-- footer web -->
-    <!-- footer m -->
+    footer web
+    footer m
     <footer class="footer_m visible-xs hidden-sm">
         <ul class="clearfix">
             <li class="on"><a href=""><span class="f_home"></span>홈</a></li>
@@ -289,8 +288,8 @@ $(document).ready(function() {
             <li><a href=""><span class="f_mypage"></span>마이페이지</a></li>
         </ul>
     </footer>
-    <!--// footer -->
-   <!-- alert -->
+    // footer
+   alert
     <div class="modal fade modal-center" id="alert_pop">
         <div class="modal-dialog sm alert_pop">
             <div class="modal-content">
@@ -304,19 +303,19 @@ $(document).ready(function() {
                         <p id="alertmsg2">다시 확인해 주세요</p>
                     </div>
                     <div class="pop_bottom_btn">
-                        <!-- 확인버튼 -->
+                        확인버튼
                         <button class="btn w100" data-dismiss="modal" id="okay">확인</button>
 
-                        <!-- 취소/확인 버튼 -->
-                        <!-- <button class="btn" data-dismiss="modal">취소</button>
-                        <button class="btn w100">확인</button> -->
+                        취소/확인 버튼
+                        <button class="btn" data-dismiss="modal">취소</button>
+                        <button class="btn w100">확인</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--// alert -->
+      //alert 
 </div>
 </body>
-
-</html>
+ <!--
+</html> -->

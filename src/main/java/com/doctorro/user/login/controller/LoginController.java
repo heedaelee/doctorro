@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.doctorro.user.join.dto.MemberDTO;
@@ -71,6 +72,8 @@ public class LoginController {
 	
     @RequestMapping("login")
     public String index(Model model, HttpSession session) {
+    	//타일즈 설정
+    	model.addAttribute("pageName", "login");
     	/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
         String naverAuthUrl = NaverLogin.getAuthorizationUrl(session);
         model.addAttribute("naverAuthUrl", naverAuthUrl);
@@ -81,7 +84,7 @@ public class LoginController {
         System.out.println("/googleLogin, url : " + url);
         model.addAttribute("google_url", url);
         
-        return "user.login";
+        return "user.login.login";
     }
     
   //1.네이버 회원가입 or 로그인 (회원정보 얻기) 네이버 로그인 성공시 callback호출 메서드
@@ -112,7 +115,7 @@ public class LoginController {
         	naver.put("au_pwd", member.getAu_pwd());
         	
         	model.addAttribute("naver", naver);
-        	return "user.login";
+        	return "user.login.login";
         }
         //회원가입 절차 (if not)
         //소셜 로그인일땐 패스워드 res.id나 네이버 제공 id를 패스워드 인코딩화 해서 insert
@@ -126,7 +129,10 @@ public class LoginController {
     	naver.put("au_pwd", id);
     	
     	model.addAttribute("naver", naver);
-        return "user.login";
+    	//일단 "회원가입이 완료되었습니다" 모달땜에 session에 join 삽입. 
+    	//login 페이지 타고 시큐리티 타기 땜에 model에는 삽입불가 
+    	session.setAttribute("join", "join");
+        return "user.login.login";
     }
     
     /* from:login.jsp
@@ -174,7 +180,7 @@ public class LoginController {
      * return : - 
      */
     @RequestMapping("kakaojoin")
-    public View kakaojoin(MemberDTO member,Model model) throws Exception {
+    public View kakaojoin(MemberDTO member,Model model,HttpSession session ) throws Exception {
     	System.out.println("카카오 join controller 입장");
     	member.setSo_code(3); //카카오 3
     	//카카오 id 값
@@ -189,13 +195,15 @@ public class LoginController {
         System.out.println("카카오 회원 가입:"+member.toString());
         model.addAttribute("au_email", member.getAu_email());
         model.addAttribute("au_pwd", kakaoId);
+        //세션 사용 모달 띄우기
+        session.setAttribute("join", "join");
     	return jsonview;
     }
     
 // ------------------------------------ 구글 콜백 ----------------------------------------
     
     @RequestMapping(value = "/googleSignInCallback", method = { RequestMethod.GET, RequestMethod.POST })
-    public String doSessionAssignActionPage(Model model,HttpServletRequest request, MemberDTO member) throws Exception {
+    public String doSessionAssignActionPage(Model model,HttpServletRequest request, MemberDTO member, HttpSession session) throws Exception {
  
         String code = request.getParameter("code");
  
@@ -250,7 +258,7 @@ public class LoginController {
         	google.put("au_pwd", member.getAu_pwd());
         	
         	model.addAttribute("google", google);
-        	return "user.login";
+        	return "user.login.login";
         }
         //회원가입 절차 (if not)
         //소셜 로그인일땐 패스워드 구글 제공 id를 패스워드 인코딩화 해서 insert
@@ -264,8 +272,19 @@ public class LoginController {
     	google.put("au_pwd", id);
     	
     	model.addAttribute("google", google);
-        return "user.login";
+    	//세션에 "join"넣어 모달 띄우기
+    	session.setAttribute("join", "join");
+        return "user.login.login";
         
+    }
+    
+    @RequestMapping(value="password", method=RequestMethod.GET)
+    public String test(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, Exception {
+    	System.out.println("pwd컨트 탐");
+    	//타일즈 설정
+    	model.addAttribute("pageName", "password");
+    	
+       return "password.user";
     }
     
     
@@ -284,5 +303,13 @@ public class LoginController {
         
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/logina");
         requestDispatcher.forward(request, response);
+    }*/
+   /* @RequestMapping("test1")
+    public String test(Model Model, HttpServletRequest request, HttpServletResponse response) throws ServletException, Exception {
+    	System.out.println("test컨트 탐1");
+        request.setAttribute("au_email", "1@1.com");
+        request.setAttribute("au_pwd", "1111111q");
+        
+       return "redirect:/login";
     }*/
 }
