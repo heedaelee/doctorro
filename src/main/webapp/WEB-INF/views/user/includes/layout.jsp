@@ -1,24 +1,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
+<%--resource include--%>
+<tiles:insertAttribute name="resource" />
+<%--//resoruce include--%>
+<c:choose>
+	<c:when test="${pageName eq'login'||pageName eq'password'||pageName eq'join'}">
+		<body>
+			<div class="util_wrap">
+	</c:when>
+	<c:otherwise>
+		<body>
+			<div class="wrap">
+	</c:otherwise>
+</c:choose>
     <%--header include--%>
     <tiles:insertAttribute name="header" />
     <%--//header include--%>
-
    
   		  <%--content include--%>
             <tiles:insertAttribute name="content" />
             <%--//content include--%>
-    <c:if test="${pageName!= 'login'||pageName!= 'password'}">
-    <!--헤더.jsp 마무리  -->
+            
+<c:if test="${pageName ne'login'&& pageName ne'password'&& pageName ne'join'}">
+    <!--login, password 제외한 헤더.jsp 의 <div class=container>의 끝  -->
     </div>
     <!--// container -->
-	</c:if>
+</c:if>
+    
         <%--footer include--%>
         <tiles:insertAttribute name="footer" />
         <%--//footer include--%>
+<c:if test="${pageName ne'login'&& pageName ne'password'&& pageName ne'join'}">
     <!-- gnb modal -->
     <div class="modal left fade gnb_modal" id="gnb_modal">
         <div class="modal-dialog" role="document">
@@ -75,7 +88,7 @@
         </div>
     </div>
     <!--// gnb modal -->
-</div>
+</c:if>
+	</div>
 </body>
-
 </html>

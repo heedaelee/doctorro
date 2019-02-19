@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -19,23 +19,25 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/validator.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/slick.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/common.js"></script>
-</head>
+</head> --%>
 
-<body>
-<div class="util_wrap">
-    <!-- header web -->
+<!-- <body>
+<div class="util_wrap"> -->
+
+    <!-- header web 
     <div class="header hidden-xs">
         <div class="inner_wrap">
             <h1 class="logo"><a href="#">닥터로</a></h1>
         </div>
     </div>
-    <!--// header web -->
-    <!-- header m -->
+    header web -->
+    <!-- header m 
     <div class="m_header visible-xs hidden-sm">
         <button class="btn_back">back</button>
         <h2>비밀번호 찾기</h2>
     </div>
     <!--// header m -->
+    
     <!-- container -->
     <div class="container">
         <div class="contents">
@@ -56,13 +58,13 @@
         </div>
     </div>
     <!--// container -->
-    <!-- footer web -->
+    <!-- footer web 
     <div class="footer hidden-xs">
         <p class="copy">&copy; Doktoro.All right served</p>
     </div>
     <!-- footer web -->
 
-    <!-- footer m -->
+    <!-- footer m 
     <footer class="footer_m visible-xs hidden-sm">
         <ul class="clearfix">
             <li class="on"><a href=""><span class="f_home"></span>홈</a></li>

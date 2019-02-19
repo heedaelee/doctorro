@@ -42,10 +42,4 @@
             </div>
         </div>
     </div>
-    <!--// alert -->
-<c:if test="${pageName == 'login'}">
-</div>
-</body>
-
-</html>
-</c:if>
+    

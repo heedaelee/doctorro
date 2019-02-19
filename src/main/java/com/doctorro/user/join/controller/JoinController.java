@@ -33,8 +33,10 @@ public class JoinController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @RequestMapping("join")
-    public String userJoinPage() {
-        return "user.join";
+    public String userJoinPage(Model model) {
+    	//타일즈 pagename
+    	model.addAttribute("pageName", "join");
+        return "user.join.join";
     }
 
     @RequestMapping(value = "join", method = RequestMethod.POST)
@@ -43,6 +45,7 @@ public class JoinController {
         int result = 0;
         int nicResult=0;
         int emailResult=0;
+        model.addAttribute("pageName", "join");
 
         System.out.println("자료:" + memberDTO.toString());
         if (bindingResult.hasErrors()) {

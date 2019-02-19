@@ -1,36 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="ko">
 
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no viewport-fit=cover">
-<title>dr.Ro</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/jquery.mCustomScrollbar.min.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/slick.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/base.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_user/css/common.css" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/validator.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/slick.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resource_user/js/common.js"></script>
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-
-</head>
 <script type="text/javascript">
 $(document).ready(function(){
-
 //회원가입 & 유효성 체크
 //패스워드 체크
 var pwdRule=/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
@@ -132,6 +104,7 @@ $('#submit').click(function () {
 		
     }
     })
+    //일반 회원가입시 모달
     $('#alert_pop').click(function(){
    		if($('#alertmsg').text()==='회원가입이 완료되었습니다.'){
    			window.location.href="login";
@@ -141,22 +114,7 @@ $('#submit').click(function () {
     
 })
 </script>
-
-<body>
-<div class="util_wrap">
-    <!-- header web -->
-    <div class="header hidden-xs">
-        <div class="inner_wrap">
-            <h1 class="logo"><a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html#">닥터로</a></h1>
-        </div>
-    </div>
-    <!--// header web -->
-    <!-- header m -->
-    <div class="m_header visible-xs hidden-sm">
-        <button class="btn_back">back</button>
-        <h2>로그인 및 회원가입</h2>
-    </div>
-    <!--// header m -->
+    
     <!-- container -->
     <div class="container">
         <div class="contents">
@@ -234,48 +192,3 @@ $('#submit').click(function () {
         </div>
     </div>
     <!--// container -->
-    <!-- footer web -->
-    <div class="footer hidden-xs">
-        <p class="copy">© Doktoro.All right served</p>
-    </div>
-    <!-- footer web -->
-
-    <!-- footer m -->
-    <footer class="footer_m visible-xs hidden-sm">
-        <ul class="clearfix">
-            <li class="on"><a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html"><span class="f_home"></span>홈</a></li>
-            <li><a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html"><span class="f_medical"></span>의료진 찾기</a></li>
-            <li><a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html"><span class="f_consult"></span>의료상담</a></li>
-            <li><a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html"><span class="f_health"></span>건강정보</a></li>
-            <li><a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html"><span class="f_mypage"></span>마이페이지</a></li>
-        </ul>
-    </footer>
-    <!--// footer m -->
-    <!-- alert -->
-    <div class="modal fade modal-center" id="alert_pop">
-        <div class="modal-dialog sm alert_pop">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"></button>
-                    <h4 class="modal-title">알림</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="modal_con">
-                        <p id="alertmsg">가입되지 않은 정보입니다.</p>
-                        <p>다시 확인해 주세요</p>
-                    </div>
-                    <div class="pop_bottom_btn">
-                        <!-- 확인버튼 -->
-                        <button class="btn w100" data-dismiss="modal" id="okay">확인</button>
-
-                        <!-- 취소/확인 버튼 -->
-                        <!-- <button class="btn" data-dismiss="modal">취소</button>
-                        <button class="btn w100">확인</button> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--// alert -->
-</div>
-</body></html>
