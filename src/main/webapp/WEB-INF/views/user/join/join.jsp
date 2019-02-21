@@ -27,13 +27,13 @@ $('#submit').click(function () {
         $('#m_nick').focus();
         return false;
     }
-    else if(!re2.test($('#au_email').val())){
+    /* else if(!re2.test($('#au_email').val())){
     	console.log($('#au_email').val());
         $('#alertmsg').text('이메일 형식을 다시 확인해 주세요');
         $('#alert_pop').modal();
         $('#au_email').focus();
         return false;
-    }
+    } */
     else if(!pwdRule.test($('#au_pwd').val())){
     	console.log($('#au_pwd').val());
         $('#alertmsg').text('패스워드 형식이 바르지 않습니다');

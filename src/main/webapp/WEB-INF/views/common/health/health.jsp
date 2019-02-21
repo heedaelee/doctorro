@@ -50,16 +50,16 @@
                    <!--for each 종료 -->
                 </ul>
             </div>
-            paging<!--여기부터  -->
+            <!--여기부터  -->
             <div class="paging">
             <!-- 5. paging view -->
 				<ul class="pagination">
 					<c:if test="${p.pageStartNum ne 1}">
 						<!-- 이전 페이지가 필요한지 아닌지 -->
 						<!--맨 첫페이지 이동 -->
-						<li class="arrow first"><a onclick='pagePre(${p.pageCnt+1},${p.pageCnt});'>&laquo;</a></li>
+						<li class="arrow first"><a onclick='pagePre(${p.pageCnt+1},${p.pageCnt});'></a></li>
 						<!--이전 페이지 이동 -->
-						<li class="arrow prev"><a onclick='pagePre(${p.pageStartNum},${p.pageCnt});'>&lsaquo;</a></li>
+						<li class="arrow prev"><a onclick='pagePre(${p.pageStartNum},${p.pageCnt});'></a></li>
 					</c:if>
 		
 					<!--보여지는 페이지번호 -->
@@ -71,9 +71,9 @@
 					<c:if test="${p.lastChk}">
 						<!--false/true 다음페이지가 필요한지 아닌지  -->
 						<!--다음 페이지 이동 -->
-						<li class="arrow next"><a onclick='pageNext(${p.pageStartNum},${p.total},${p.listCnt},${p.pageCnt});'>&rsaquo;</a></li>
+						<li class="arrow next"><a onclick='pageNext(${p.pageStartNum},${p.total},${p.listCnt},${p.pageCnt});'></a></li>
 						<!--마지막 페이지 이동 -->
-						<li class="arrow last"><a onclick='pageLast(${p.pageStartNum},${p.total},${p.listCnt},${p.pageCnt});'>&raquo;</a></li>
+						<li class="arrow last"><a onclick='pageLast(${p.pageStartNum},${p.total},${p.listCnt},${p.pageCnt});'></a></li>
 					</c:if>
 					<!-- 백업 <ul부터..
 		                <li class="arrow first"><a href="#"></a></li>
