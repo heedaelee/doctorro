@@ -191,4 +191,3 @@ var paging = {
             $('.nextBtn').children('li').remove();
         }
 };
-

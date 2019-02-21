@@ -23,14 +23,14 @@
 	                            <span class="health_img">
 	                           <c:choose>
 		                            <c:when test="${list.thumImg eq 'http://www.samsunghospital.com/upload/'}">
-		                            	<img src="${pageContext.request.contextPath}/resource_user/images/health_img03.jpg" alt="">
+		                            	<img src="${pageContext.request.contextPath}/resource_user/images/no_img.jpg" alt="">
 		                            </c:when>
 		                            <c:when test="${list.thumImg eq 'http://www.samsunghospital.com/upload//'}">
-		                            	<img src="${pageContext.request.contextPath}/resource_user/images/health_img03.jpg" alt="">
+		                            	<img src="${pageContext.request.contextPath}/resource_user/images/no_img.jpg" alt="">
 		                            </c:when>
 		                            <c:otherwise>
 		                            <!--섬네일  -->
-		                                <img src="${list.thumImg}" alt="" onerror="this.src='${pageContext.request.contextPath}/resource_user/images/health_img03.jpg'">
+		                                <img src="${list.thumImg}" alt="" onerror="this.src='${pageContext.request.contextPath}/resource_user/images/no_img.jpg'">
 		                                <!--요약내용이 삼성병원에서 너무 길게줌  -->
 		                                <%-- <span class="health_label">${list.contTitle}</span> --%>
 		                            </c:otherwise>

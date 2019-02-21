@@ -43,12 +43,22 @@ public class MailService {
 		this.velocityEngine = velocityEngine;
 	}
 
-	public String sendMail(String mailto,String command,HashMap<String, Object> map) {
+	public String sendMail(String mailto,String toPathUrl,HashMap<String, Object> map) {
+		//로그인 url, 이미지 url 주소 작업
+		String imgUrl="";
+		String loginUrl="";
+		imgUrl=toPathUrl+"/resource_user/images/mail_bg.jpg";
+		
+		//if 의사랑 일반인 분리 작업 해줘야..
+		loginUrl = toPathUrl+"/user/login";
+		
 		Mail mail = new Mail();
 		mail.setCompany("Doctorro");// 회사명
 		mail.setMailFrom("Doctorro");// 송신메일
 		mail.setMailTo(mailto);// 수신메일
 		String randomNum = this.randomNum();
+		
+		System.out.println("홈페이지 이미지까지:"+imgUrl);
 		
 		mail.setMailSubject("닥터로-임시비밀번호 이메일");// 메일제목
 		mail.setTemplateName("logintemplate.vm");// 메일내용
@@ -65,12 +75,13 @@ public class MailService {
 			helper.setFrom(mail.getMailFrom());
 			helper.setTo(mail.getMailTo());
 			helper.setSubject(mail.getMailSubject());
-		
-
+			
+			//일단 http://rsad.co.kr/client/doctoro/dr_public/resource/images/mail_bg.jpg
 			String pwd = this.randomPwd();
 			VelocityContext velocityContext = new VelocityContext();
 			velocityContext.put("firstName", mailto);
-			velocityContext.put("id", "Doctorro");
+			velocityContext.put("imgUrl", imgUrl);
+			velocityContext.put("loginUrl", loginUrl);
 			velocityContext.put("company", mail.getCompany());
 			velocityContext.put("mailFrom", mail.getMailFrom());
 			velocityContext.put("randomNum", randomNum);

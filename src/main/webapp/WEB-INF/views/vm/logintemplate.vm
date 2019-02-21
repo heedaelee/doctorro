@@ -1,422 +1,50 @@
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 
 <head>
-  <title></title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="x-apple-disable-message-reformatting">
-  <style type="text/css">
-    #outlook a {
-  padding: 0;
-}
-
-.ReadMsgBody {
-  width: 100%;
-}
-
-.ExternalClass {
-  width: 100%;
-}
-
-.ExternalClass * {
-  line-height: 100%;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-
-table,
-td {
-  border-collapse: collapse;
-  mso-table-lspace: 0pt;
-  mso-table-rspace: 0pt;
-}
-
-img {
-  border: 0;
-  height: auto;
-  line-height: 100%;
-  outline: none;
-  text-decoration: none;
-  -ms-interpolation-mode: bicubic;
-}
-
-p, ul {
-  display: block;
-  margin: 0;
-}
-
-@media only screen and (min-width:480px) {
-  .email-col-17 {width: 17%!important;}
-  .email-col-25 {width: 25%!important;}
-  .email-col-33 {width: 33%!important;}
-  .email-col-50 {width: 50%!important;}
-  .email-col-67 {width: 67%!important;}
-  .email-col-100 {width: 100%!important;}
-}
-
-@media only screen and (max-width:480px) {
-  img.fullwidth { max-width: 100% !important; }
-}
-
-  </style>
-<!--[if mso]>
-<xml>
-  <o:OfficeDocumentSettings>
-    <o:AllowPNG/>
-    <o:PixelsPerInch>96</o:PixelsPerInch>
-  </o:OfficeDocumentSettings>
-</xml>
-<![endif]-->
-<!--[if lte mso 11]>
-<style type="text/css">
-  .outlook-group-fix {
-    width:100% !important;
-  }
-</style>
-<![endif]-->
-
-<!--[if !mso]><!--><link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css">
-<style type="text/css">
-  @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
-</style><link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
-<style type="text/css">
-  @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-</style><!--<![endif]-->
-
+  <title>DR.Ro | 안내메일</title>
+  <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=utf-8 ;width=device-width, initial-scale=1.0" />
 </head>
 
-<body width="100%" bgcolor="#ffffff" style="margin: 0; mso-line-height-rule: exactly; background-color: #ffffff;">
-  <div style="background-color: #ffffff; font-family: 'Raleway',sans-serif;">
-  
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 0; padding: 0">
-  <tr>
-    <td align="center" valign="top" bgcolor="" style="padding: 10px 10px 0px; background-color: rgba(255,255,255,0);">
-      <!--[if mso | IE]>
-      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-      <div style="margin:0px auto;max-width:600px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
-          <tbody>
+<body style="margin:0; padding:0;">
+  <div align="left" style="width:842px;font-size:14px; color:#424242; font-family:'Malgun Gothic','맑은 고딕','Dotum','돋움';">
+    <table width="842" border="0" cellpadding="0" cellspacing="0" style="font-size:13px; color:#424242; text-align:center; font-family:'Malgun Gothic','맑은 고딕','Dotum','돋움';width:842px;vertical-align: top;background: url('${imgUrl}') no-repeat 0 0;background-size: 842px 669px">
+      <!-- header -->
+      <tr bgcolor="#21d4d9">
+        <td align="center" style="height:103px;">
+          <img src="../../resource/images/mail_logo.png" border="0" alt="DR.Ro" style="width:73px;height:44px;display: inline-block;margin-top: 30px" /></span>
+        </td>
+      </tr>
+      <!-- content -->
+      <tr>
+        <td align="center" bgcolor="" style="font-size: 14px;color:#424242;height: 479px;">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%" style="width:752px;height: 451px;background: url(${imgUrl}mail_con_bg.png) no-repeat 0 0;background-size: 752px 451px">
             <tr>
-              <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;">
-                <!--[if mso | IE]>
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:300px;">
-  <![endif]-->
-  <div class="email-col-50 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:center;width:100%;">
-    
-   
-          <a href="http://192.168.0.132:8090/${company}/index.htm">
-          <img align="center" border="0" src="http://192.168.0.132:8090/${company}/images/logo.png" alt="Image" title="Image">
-        </a>
-      
-
-  </div>
-  <!--[if mso | IE]>
-  </td>
-<td style="vertical-align:top;width:300px;">
-  <![endif]-->
-  <div class="email-col-50 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
-    
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td>
-        
-  <div style="color: #000; line-height: 120%; text-align: right; font-family: inherit;">
-    
-  </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-  </div>
-  <!--[if mso | IE]>
-  </td>
-</tr></table>
-                <![endif]-->
+              <td align="center" bgcolor="" style="height: 153px;">
+                <strong style="display: block;font-size: 18px;color:#ffffff;font-weight: bold;letter-spacing: -1px;margin-bottom: 12px">임시 비밀번호 안내</strong>
+                <span style="font-size: 13px;color:#ffffff;line-height: 1.5;font-weight: bold;letter-spacing: -1px">안녕하세요, 닥터로 서비스 계정의 임시 비밀번호를 발급해 드립니다.<br/>사이트를 접속하여 임시 비밀번호를 변경해 주세요</span>
               </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--[if mso | IE]>
-      </td></tr></table>
-      <![endif]-->
-    </td>
-  </tr>
-</table>
-
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 0; padding: 0">
-  <tr>
-    <td align="center" valign="top" bgcolor="" style="padding: 0px 10px; background-color: rgba(255,255,255,0);">
-      <!--[if mso | IE]>
-      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-      <div style="margin:0px auto;max-width:600px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
-          <tbody>
             <tr>
-              <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;" bgcolor="#f2f2f2">
-                <!--[if mso | IE]>
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:600px;">
-  <![endif]-->
-  <div class="email-col-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
-    
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap: break-word;padding:30px 20px 15px;" align="left">
-        
-  <div style="color: #283e66; line-height: 140%; text-align: center; font-family: inherit;">
-    <p style="line-height: 140%; font-size: 14px;"><span style="font-size: 40px; line-height: 56px;">안녕하세요<br> <strong>${company}</strong> 입니다</span></p>
-  </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap: break-word;padding:0px 20px;" align="left">
-        
-  <div style="text-align: center;">
-    <div style="border-top-width: 1px; border-top-style: solid; border-top-color: #CCC; display: inline-block; width: 51%; line-height: 1px; font-size: 1px; height: 1px;">&#160;</div>
-  </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap: break-word;padding:15px 20px;" align="left">
-        
-  <div style="color: #545454; line-height: 150%; text-align: center; font-family: inherit;">
-    <p style="font-size: 14px; line-height: 150%;"><span style="font-size: 16px; line-height: 24px;">안녕하세요 <strong>${firstName}&nbsp;</strong>님!<br>저희 <strong>${company}</strong>를 이용해 주셔서 감사합니다.<br><br>요청하신 임시 비밀번호를 보내드립니다.<br>임시 비밀번호로 로그인 하신 후<br> 개인정보를 수정해주시기 바랍니다.<br><br>앞으로 더욱 발전하는 <strong>${company}</strong>가 되도록 하겠습니다.<br> 감사합니다.&nbsp;</span></p>
-  </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-  </div>
-  <!--[if mso | IE]>
-  </td>
-</tr></table>
-                <![endif]-->
+              <td align="center" style="height: 298px;">
+                <span style="display: block;width:429px;height:74px ;margin-bottom: 15px;color:#424242;font-size: 14px;font-weight: bold;line-height: 74px;text-align: center;background:#f4f9fc;border:1px solid #e3e3e3">${randomPwd}</span>
+                <span style="color:#424242;font-size: 13px;font-weight: bold;line-height: 1.4">위 내용이 회원님께서 요청하신 것이 아니면 고객센터로 신고 바랍니다.<br/>닥터로 서비스를 이용해 주셔서 감사합니다.</span>
+                <a href="${loginUrl}" style="display: block;height:49px ;line-height: 49px;width: 279px;text-align: center;color: #ffffff;font-size:14px;font-weight:bold;background:#21d4d9;text-decoration: none;margin-top: 35px;margin-bottom: 25px">웹으로 이동<span style="display: inline-block;width: 26px;height:11px;margin-left:10px;background: url(${imgUrl}mail_arrow.png) no-repeat 0 0;background-size: 26px 11px"></span></a>
               </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--[if mso | IE]>
-      </td></tr></table>
-      <![endif]-->
-    </td>
-  </tr>
-</table>
-
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 0; padding: 0">
-  <tr>
-    <td align="center" valign="top" bgcolor="" style="padding: 0px 10px 5px; background-color: rgba(255,255,255,0);">
-      <!--[if mso | IE]>
-      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-      <div style="margin:0px auto;max-width:600px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
-          <tbody>
-            <tr>
-              <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;" bgcolor="#f2f2f2">
-                <!--[if mso | IE]>
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:600px;">
-  <![endif]-->
-  <div class="email-col-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
-    
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap: break-word;padding:0px 20px;" align="left">
-        
-  <div style="text-align: center;">
-    <div style="border-top-width: 4px; border-top-style: solid; border-top-color: #3aafe0; display: inline-block; width: 65%; line-height: 4px; font-size: 4px; height: 4px;">&#160;</div>
-  </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap: break-word;padding:3px 20px 9px;" align="left">
-        
-  <div style="color: #283e66; line-height: 110%; text-align: center; font-family: inherit;">
-    <p style="font-size: 14px; line-height: 110%;"><span style="font-size: 20px; line-height: 37.4px;">임시 비밀번호 : <span style="font-family: Lato, sans-serif; line-height: 44px; font-size: 20px;"><strong>${randomPwd}</strong></span></span></p>
-  </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap: break-word;padding:0px 20px;" align="left">
-        
-  <div style="text-align: center;">
-    <div style="border-top-width: 4px; border-top-style: solid; border-top-color: #3aafe0; display: inline-block; width: 65%; line-height: 4px; font-size: 4px; height: 4px;">&#160;</div>
-  </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-<br>
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap: break-word;padding:15px 20px 20px;" align="left">
-        
-<div align="center">
-  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://192.168.0.132:8090/${company}/index.htm" style="height:56px; v-text-anchor:middle; width:155px;" arcsize="0%" strokecolor="#283e66" strokeweight="4px" fillcolor="#f1c40f"><w:anchorlock/><center style="color:#FFF; font-family:inherit;"><![endif]-->
-    <a href="http://192.168.0.132:8090/${company}/index.htm" target="_blank" style="display: inline-block; text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFF; background-color: #f1c40f; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; width: auto; padding: 10px 30px; font-family: inherit; mso-border-alt: none;border-top-color: #f1c40f; border-top-style: solid; border-top-width: 4px; border-left-color: #f1c40f; border-left-style: solid; border-left-width: 4px; border-right-color: #f1c40f; border-right-style: solid; border-right-width: 4px; border-bottom-color: #f1c40f; border-bottom-style: solid; border-bottom-width: 4px;">
-      <span style="font-family:inherit;"><span style="line-height: 36px;"><strong><span style="font-size: 20px;">go to ${company}</span></strong></span></span>
-    </a>
-  <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
-</div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-  </div>
-  <!--[if mso | IE]>
-  </td>
-</tr></table>
-                <![endif]-->
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--[if mso | IE]>
-      </td></tr></table>
-      <![endif]-->
-    </td>
-  </tr>
-</table>
-
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 0; padding: 0">
-  <tr>
-    <td align="center" valign="top" bgcolor="" style="padding: 5px 10px 0px; background-color: rgba(255,255,255,0);">
-      <!--[if mso | IE]>
-      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-      <div style="margin:0px auto;max-width:600px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
-          <tbody>
-            <tr>
-              <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;" bgcolor="#000032">
-                <!--[if mso | IE]>
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:600px;">
-  <![endif]-->
-  <div class="email-col-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
-    
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap: break-word;padding:20px;" align="left">
-        
-  <div style="color: #ffffff; line-height: 160%; text-align: center; font-family: inherit;">
-    <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 14px; line-height: 22.4px; color: #ffffff;">${company}</span></p>
-  </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-  </div>
-  <!--[if mso | IE]>
-  </td>
-</tr></table>
-                <![endif]-->
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--[if mso | IE]>
-      </td></tr></table>
-      <![endif]-->
-    </td>
-  </tr>
-</table>
-
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 0; padding: 0">
-  <tr>
-    <td align="center" valign="top" bgcolor="#ffffff" style="padding: 30px; background-color: #ffffff;">
-      <!--[if mso | IE]>
-      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-      <div style="margin:0px auto;max-width:600px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
-          <tbody>
-            <tr>
-              <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;" bgcolor="">
-                <!--[if mso | IE]>
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:600px;">
-  <![endif]-->
-  <div class="email-col-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
-    
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap: break-word;padding:20px;" align="left">
-        
-  <div style="color: #000; line-height: 120%; text-align: left; font-family: inherit;">
-    <p style="line-height: 120%; font-size: 14px; text-align: center;">@ Copyright 2018.All right reserved</p>
-  </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-  </div>
-  <!--[if mso | IE]>
-  </td>
-</tr></table>
-                <![endif]-->
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--[if mso | IE]>
-      </td></tr></table>
-      <![endif]-->
-    </td>
-  </tr>
-</table>
-
+          </table>
+        </td>
+      </tr>
+      <!-- footer -->
+      <tr>
+        <td align="center" bgcolor="#f4f9fc" style="height:100px;padding-bottom: 35px;padding-top: 15px">
+          <span style="display: block;color:#424242;font-size: 12px;font-weight: bold;letter-spacing: -.5px;line-height: 1.3">서울특별시 강남구 도곡로 117 옥신타워 8층(06253)</span>
+          <span style="display: block;color:#9b9b9b;font-size: 12px;font-weight: 500;letter-spacing: -.5px">Copyright Ⓒ Doktoro. All rights reserved</span>
+        </td>
+      </tr>
+    </table>
   </div>
 </body>
 
 </html>
-

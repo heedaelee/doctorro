@@ -35,7 +35,7 @@
 	   <!-- header web -->
 	    <div class="header hidden-xs">
 	        <div class="inner_wrap">
-	            <h1 class="logo"><a href="http://rsad.co.kr/client/doctoro/dr_public/html/utility/membership.html#">닥터로</a></h1>
+	            <h1 class="logo"><a href="${pageContext.request.contextPath}/user/join">닥터로</a></h1>
 	        </div>
 	    </div>
 	    <!--// header web -->
@@ -50,7 +50,7 @@
 			<!-- header web -->
 		    <div class="header hidden-xs">
 		        <button class="btn_menu" data-target="#gnb_modal" data-toggle="modal">매뉴</button>
-		        <h1 class="logo"><a href="http://rsad.co.kr/client/doctoro/dr_public/html/main/index.html#">닥터로</a></h1>
+		        <h1 class="logo"><a href="${pageContext.request.contextPath}/user/index">닥터로</a></h1>
 		        <div class="inner_wrap">
 		            <h2 class="title">건강정보</h2>
 		        </div>
@@ -63,29 +63,67 @@
 		    <!-- header m -->
 		    <div class="m_header main_header visible-xs hidden-sm">
 		        <button class="btn_menu_m" data-target="#gnb_modal" data-toggle="modal">메뉴</button>
-		        <h1 class="logo"><a href="http://rsad.co.kr/client/doctoro/dr_public/html/main/index.html#">닥터로</a></h1>
+		        <h1 class="logo"><a href="${pageContext.request.contextPath}/user/index">닥터로</a></h1>
 		        <button class="btn_alarm">알람</button>
 		    </div>
 		    <!--// header m -->
 		     <!-- container -->
 		    <div class="container">
 		  <c:if test="${pageName ne'main'}">
+		  	<c:if test="${pageName eq'health'}">
 		    	 <div class="sub_nav">
 		            <div>
 		                <ul>
-		                    <li class="on"><a href="#">건강정보</a></li>
-		                    <li><a href="#">질병정보</a></li>
+		                    <li class="on"><a href="${pageContext.request.contextPath}/user/health">건강정보</a></li>
+		                    <li><a href="${pageContext.request.contextPath}/user/disease">질병정보</a></li>
 		                    <li><a href="#">제약정보</a></li>
 		                </ul>
 		            </div>
 		        </div>
 		        <div class="breadcrumb_wrap hidden-xs">
 		          <ul>
-		            <li><a href="#">Home</a></li>
-		            <li><a href="#">건강정보</a></li>
+		            <li><a href="${pageContext.request.contextPath}/user/index">Home</a></li>
+		            <li><a href="${pageContext.request.contextPath}/user/health">건강정보</a></li>
 		            <li>건강정보</li>
 		          </ul>
 		        </div>
+		     </c:if>
+		     <c:if test="${pageName eq'disease'}">
+		    	 <div class="sub_nav">
+		            <div>
+		                <ul>
+		                    <li><a href="${pageContext.request.contextPath}/user/health">건강정보</a></li>
+		                    <li class="on"><a href="${pageContext.request.contextPath}/user/disease">질병정보</a></li>
+		                    <li><a href="#">제약정보</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		        <div class="breadcrumb_wrap hidden-xs">
+		          <ul>
+		            <li><a href="${pageContext.request.contextPath}/user/index">Home</a></li>
+		            <li><a href="${pageContext.request.contextPath}/user/health">건강정보</a></li>
+		            <li>질병정보</li>
+		          </ul>
+		        </div>
+		     </c:if>
+		     <c:if test="${pageName eq'drug'}">
+		    	 <div class="sub_nav">
+		            <div>
+		                <ul>
+		                    <li><a href="${pageContext.request.contextPath}/user/health">건강정보</a></li>
+		                    <li><a href="${pageContext.request.contextPath}/user/disease">질병정보</a></li>
+		                    <li class="on"><a href="#">제약정보</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		        <div class="breadcrumb_wrap hidden-xs">
+		          <ul>
+		            <li><a href="${pageContext.request.contextPath}/user/index">Home</a></li>
+		            <li><a href="${pageContext.request.contextPath}/user/health">건강정보</a></li>
+		            <li>제약정보</li>
+		          </ul>
+		        </div>
+		     </c:if>
 		   </c:if>
 	</c:otherwise>
 </c:choose>

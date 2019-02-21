@@ -28,6 +28,12 @@
 	         <put-attribute name="footer" value="/WEB-INF/views/{1}/includes/footer.jsp" />
 	         <put-attribute name="content" value="/WEB-INF/views/common/password/password.jsp" />
 	     </definition>
+	      <definition name="disease.*" template="/WEB-INF/views/{1}/includes/layout.jsp" >
+	     	 <put-attribute name="resource"  value="/WEB-INF/views/{1}/includes/resource.jsp" />
+	     	 <put-attribute name="header"  value="/WEB-INF/views/{1}/includes/header.jsp" />
+	         <put-attribute name="footer" value="/WEB-INF/views/{1}/includes/footer.jsp" />
+	         <put-attribute name="content" value="/WEB-INF/views/common/disease/disease.jsp" />
+	     </definition>
 	     
 	     <!--일반인/의사 페이지 완전 나뉘는것 ex)doctor.index.index --> <!--의사/일반인 리소스 layout 별로 나뉨  -->
 	     <definition name="*.*.*" template="/WEB-INF/views/{1}/includes/layout.jsp" >

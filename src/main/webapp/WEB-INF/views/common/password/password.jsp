@@ -1,43 +1,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <!DOCTYPE html>
-<html lang="ko">
-
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no viewport-fit=cover">
-<title>dr.Ro</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/normalize.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/slick.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/base.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource_doctor/css/common.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/validator.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/slick.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resource_doctor/js/common.js"></script>
-</head> --%>
-
-<!-- <body>
-<div class="util_wrap"> -->
-
-    <!-- header web 
-    <div class="header hidden-xs">
-        <div class="inner_wrap">
-            <h1 class="logo"><a href="#">닥터로</a></h1>
-        </div>
-    </div>
-    header web -->
-    <!-- header m 
-    <div class="m_header visible-xs hidden-sm">
-        <button class="btn_back">back</button>
-        <h2>비밀번호 찾기</h2>
-    </div>
-    <!--// header m -->
-    
+<!--이메일 체크랑, pwd update 하는거 해야함  -->
+    <script>
+    $(function(){
+    	$('#submit').click(function(){
+    		alert($('#userEmail').val());
+    		$.ajax({
+    			type:'post',
+    			url:'${pageContext.request.contextPath}/pwd',
+    			data :{
+    				"mailto":$('#userEmail').val()
+    			},
+    			success:function(data){
+    				console.log(data);
+    				$('#alertmsg').text('비밀번호가 전송되었습니다.');
+					$('#alertmsg2').text('');
+					$('#userEmail').val("");
+					$('#alert_pop').modal();
+    			},
+    			error : function(error){
+    				console.log(error);
+    				console.log(error.status);
+    			}
+    		})
+    	})
+    	
+    	$('#alert_pop').click(function(){
+		if($('#alertmsg').text()=='비밀번호가 전송되었습니다.'){
+  			window.location.href="user/login";
+  			}
+	   })
+    })
+    </script>
     <!-- container -->
     <div class="container">
         <div class="contents">
@@ -48,12 +42,12 @@
                 <strong class="form_title">가입 때 입력하신 이메일 주소를 입력해 주세요</strong>
                 <div class="form-group">
                     <label for="email" class="label_txt">이메일</label>
-                    <input class="form-control" type="email" name="userEmail" data-error="잘못된 이메일 형식입니다." id="email" placeholder="이메일을 입력해 주세요"/>
+                    <input class="form-control" type="email" id="userEmail" name="userEmail" data-error="잘못된 이메일 형식입니다." id="email" placeholder="이메일을 입력해 주세요"/>
                     <div class="help-block with-errors"></div>
                 </div>
             </form>
             <div class="bottom_btn">
-                <a href="#" class="btn btn_aqua">비밀번호 초기화</a>
+                <a id="submit" class="btn btn_aqua" >임시 비밀번호 발송</a>
             </div>
         </div>
     </div>

@@ -25,10 +25,16 @@
 	</security:session-management>
 	<security:logout logout-success-url="/user/index" />
 	
+	<!--예제
+	 <security:logout logout-url="/logout"
+					 logout-success-url="/index.htm" 
+					 invalidate-session="true"/>	 -->
+	
 	<!--일단 보류
 	<security:intercept-url pattern="/mypage.htm" access="hasRole('ROLE_USER')" />
 	<security:intercept-url pattern="/visited.htm" access="hasRole('ROLE_USER')" />
 	<security:intercept-url pattern="/travelreport.htm" access="hasRole('ROLE_ADMIN')" />
+	<security:intercept-url pattern="/login.htm" access="permitAll" />
 	-->
 	
 </security:http>

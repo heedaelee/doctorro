@@ -267,16 +267,6 @@ public class LoginController {
         
     }
     
-    @RequestMapping(value="password", method=RequestMethod.GET)
-    public String test(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, Exception {
-    	System.out.println("pwd컨트 탐");
-    	//타일즈 설정
-    	model.addAttribute("pageName", "password");
-    	
-       return "password.user";
-    }
-    
-    
     //test
     /*@RequestMapping("test")
     public View test(String test, Model model) {

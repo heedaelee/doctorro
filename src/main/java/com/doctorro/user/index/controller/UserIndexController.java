@@ -36,6 +36,7 @@ public class UserIndexController {
 			
 		return "user.index.index";
 	}
+    	
         return "user.index.index";
     }
 }

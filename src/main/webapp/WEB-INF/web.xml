@@ -12,7 +12,8 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml
-		/WEB-INF/spring/security-context.xml</param-value>
+		/WEB-INF/spring/security-context.xml
+		</param-value>
 	</context-param>
 
     <!-- 컨테이너 로더 -->
@@ -28,7 +29,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml
-						 /WEB-INF/spring/appServlet/email-context.xml</param-value>
+						 </param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

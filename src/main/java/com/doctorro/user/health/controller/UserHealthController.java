@@ -49,7 +49,7 @@ public class UserHealthController {
     	System.out.println("컨트롤러 최종 값"+ list.toString());
     	System.out.println("페이징 : " + paging.toString());
 		System.out.println("게시글 총갯수 : " + totalCount);
-    	//=================================================작업중
+		model.addAttribute("pageName", "health");
         return "health.user";
     }
     

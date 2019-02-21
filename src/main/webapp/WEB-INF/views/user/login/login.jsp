@@ -192,7 +192,7 @@ $('#custom-login-btn').click(function(){
                     <div class="link_text">
                         <a href="${pageContext.request.contextPath}/user/join">회원가입</a>
                         <span>|</span>
-                        <a href="search_id.html">비밀번호 찾기</a>
+                        <a href="${pageContext.request.contextPath}/pwd">비밀번호 찾기</a>
                     </div>
                 </form>
                 <form method="post" id="SocialloginForm" action='${pageContext.request.contextPath}/login'>
