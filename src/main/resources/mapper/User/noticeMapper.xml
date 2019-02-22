@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doctorro.user.notice.dao.NoticeDao">
+
+	<select id="getFirstList"
+		resultType="com.doctorro.user.notice.dto.NoticeDto">
+		select no_seq, au_seq, t_seq, no_title, no_content,
+		DATE_FORMAT(no_regdate,'%Y-%m-%d') no_regdate, no_isFirst, no_hit, ni_seq
+		from notice
+		where no_isFirst='Y'
+		order by no_seq desc
+	</select>
+
+	<select id="getNoticeList"
+		resultType="com.doctorro.user.notice.dto.NoticeDto">
+		select no_seq, au_seq, t_seq, no_title, no_content,
+		DATE_FORMAT(no_regdate,'%Y-%m-%d') no_regdate, no_isFirst, no_hit, ni_seq
+		from notice where no_isFirst IS NULL
+		order by no_seq desc
+	</select>
+
+</mapper>

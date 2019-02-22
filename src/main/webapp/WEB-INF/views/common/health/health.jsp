@@ -75,17 +75,6 @@
 						<!--마지막 페이지 이동 -->
 						<li class="arrow last"><a onclick='pageLast(${p.pageStartNum},${p.total},${p.listCnt},${p.pageCnt});'></a></li>
 					</c:if>
-					<!-- 백업 <ul부터..
-		                <li class="arrow first"><a href="#"></a></li>
-		                <li class="arrow prev disable"><a href="#"></a></li>
-		                <li class="active"><a href="#">1</a></li>
-		                <li><a href="#">2</a></li>
-		                <li><a href="#">3</a></li>
-		                <li><a href="#">4</a></li>
-		                <li><a href="#">5</a></li>
-		                <li class="arrow next"><a href="#"></a></li>
-		                <li class="arrow last"><a href="#"></a></li>
-		                 -->
 				</ul>
 				
 			<form action="health" method="post" id='frmPaging'>

@@ -27,7 +27,16 @@
 		        <button class="btn_menu" data-target="#gnb_modal" data-toggle="modal">매뉴</button>
 		        <h1 class="logo"><a href="${pageContext.request.contextPath}/user/index">닥터로</a></h1>
 		        <div class="inner_wrap">
-		            <h2 class="title">건강정보</h2>
+			        <h2 class="title">
+			        	<c:choose>
+			        		<c:when test="${pageName eq'notice_list'}">
+			        			공지사항
+			        		</c:when>
+			        		<c:otherwise>
+			        			건강정보
+			        		</c:otherwise>
+			        	</c:choose>
+			        </h2>
 		        </div>
 		        <ul class="nav_link">
 		            <li class="btn_alarm"><a href="http://rsad.co.kr/client/doctoro/dr_public/html/main/index.html#">알림</a></li>
@@ -36,46 +45,62 @@
 		    </div>
 		    <%--// header web --%>
 		    <%-- header m --%>
-		    <div class="m_header main_header visible-xs hidden-sm">
+		   <c:choose>
+		   	<c:when test="${pageName eq'notice_list'}">
+		   		 <div class="m_header visible-xs hidden-sm">
+			        <button class="btn_back">back</button>
+			        <h2 class="title">공지사항</h2>
+			    </div>
+		   	</c:when>
+		   	<c:otherwise>
+		   		<div class="m_header main_header visible-xs hidden-sm">
 		        <button class="btn_menu_m" data-target="#gnb_modal" data-toggle="modal">메뉴</button>
 		        <h1 class="logo"><a href="${pageContext.request.contextPath}/user/index">닥터로</a></h1>
 		        <button class="btn_alarm">알람</button>
 		    </div>
+		   	</c:otherwise>
+		   </c:choose>
 		    <%--// header m --%>
 		     <%-- container --%>
 		    <div class="container">
 		  <c:choose>
-			  <c:when test="${pageName ne'main'}">
-			  	<c:if test="${pageName eq'health'||pageName eq'disease'||pageName eq'drug'}">
+			  	<c:when test="${pageName eq'health'||pageName eq'disease'||pageName eq'drug'||pageName eq'drug'
+			  	||pageName eq'notice_list'}">
 			    	 <div class="sub_nav">
-			            <div>
-			                <ul>
-			                	<c:choose>
-			                		<c:when test="${pageName eq'health'}">
-			                		<li class="on"><a href="${pageContext.request.contextPath}/user/health">건강정보</a></li>
-			                		</c:when>
-				                    <c:otherwise>
-				                    <li><a href="${pageContext.request.contextPath}/user/health">건강정보</a></li>
-				                    </c:otherwise>
-				                 </c:choose>
-				                 <c:choose>
-			                		<c:when test="${pageName eq'disease'}">
-			                		<li class="on"><a href="${pageContext.request.contextPath}/user/disease">건강정보</a></li>
-			                		</c:when>
-				                    <c:otherwise>
-				                    <li><a href="${pageContext.request.contextPath}/user/disease">질병정보</a></li>
-				                    </c:otherwise>
-				                 </c:choose>
-				                 <c:choose>
-			                		<c:when test="${pageName eq'drug'}">
-			                		<li class="on"><a href="${pageContext.request.contextPath}/user/drug">제약정보</a></li>
-			                		</c:when>
-				                    <c:otherwise>
-				                    <li><a href="${pageContext.request.contextPath}/user/drug">제약정보</a></li>
-				                    </c:otherwise>
-				                 </c:choose>
-			                </ul>
-			            </div>
+		                <ul>
+		                	<c:choose>
+		                		<c:when test="${pageName eq'health'||pageName eq'disease'||pageName eq'drug'||pageName eq'drug'}">
+				                	<c:choose>
+				                		<c:when test="${pageName eq'health'}">
+				                		<li class="on"><a href="${pageContext.request.contextPath}/user/health">건강정보</a></li>
+				                		</c:when>
+					                    <c:otherwise>
+					                    <li><a href="${pageContext.request.contextPath}/user/health">건강정보</a></li>
+					                    </c:otherwise>
+					                 </c:choose>
+					                 <c:choose>
+				                		<c:when test="${pageName eq'disease'}">
+				                		<li class="on"><a href="${pageContext.request.contextPath}/user/disease">건강정보</a></li>
+				                		</c:when>
+					                    <c:otherwise>
+					                    <li><a href="${pageContext.request.contextPath}/user/disease">질병정보</a></li>
+					                    </c:otherwise>
+					                 </c:choose>
+					                 <c:choose>
+				                		<c:when test="${pageName eq'drug'}">
+				                		<li class="on"><a href="${pageContext.request.contextPath}/user/drug">제약정보</a></li>
+				                		</c:when>
+					                    <c:otherwise>
+					                    <li><a href="${pageContext.request.contextPath}/user/drug">제약정보</a></li>
+					                    </c:otherwise>
+					                 </c:choose>
+					            </c:when>
+					            <c:when test="${pageName eq 'notice_list'}">
+					            	<li><a href="#">알림</a></li>
+                					<li class="on"><a href="#">공지사항</a></li>
+					            </c:when>     
+			               </c:choose>  
+		                </ul>
 			        </div>
 			        <div class="breadcrumb_wrap hidden-xs">
 			          <ul>
@@ -92,10 +117,12 @@
 		                		 <li><a href="${pageContext.request.contextPath}/user/drug">제약정보</a></li>
 			           			 <li>제약정보</li>
 			                 </c:if>
+			                 <c:if test="${pageName eq'notice_list'}">
+            					<li><a href="${pageContext.request.contextPath}/user/notice_list">공지사항</a></li>
+			                 </c:if>
 			          </ul>
 			        </div>
-			     </c:if>
-			   </c:when>
+			     </c:when>
 		 </c:choose>
 	</c:otherwise>
 </c:choose>
