@@ -9,6 +9,10 @@
 		<body>
 			<div class="util_wrap">
 	</c:when>
+	<c:when test="${pageName eq'event_list'}">
+		<body>
+			<div class="wrap bg">
+	</c:when>
 	<c:otherwise>
 		<body>
 			<div class="wrap">
@@ -22,8 +26,7 @@
             <tiles:insertAttribute name="content" />
             <%--//content include--%>
             
-<c:if test="${pageName ne'login'&& pageName ne'password'&& pageName ne'join'
-				&& pageName ne'notice_list'}">
+<c:if test="${pageName ne'login'&& pageName ne'password'&& pageName ne'join'}">
     <!--login, password,notice 제외한 헤더.jsp 의 <div class=container>의 끝  -->
     </div>
     <!--// container -->

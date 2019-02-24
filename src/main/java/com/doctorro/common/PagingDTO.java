@@ -20,7 +20,7 @@ public class PagingDTO {
       pageCnt = 5;
       index = 0;//초기화
       pageStartNum = 1;
-      listCnt = 10;
+      listCnt = 2;
   }
   
   public PagingDTO() {}

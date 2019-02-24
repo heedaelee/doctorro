@@ -23,45 +23,42 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 
-	@RequestMapping(value = "notice", method=RequestMethod.GET)
+	@RequestMapping(value = "notice", method= {RequestMethod.GET,RequestMethod.POST})
 	public String notice_list(Model model, PagingDTO paging ) {
 		System.out.println("user notice 컨트롤러 탐");
 		//paging시 index랑  listCnt만 DB에 던짐
 		
-		List<NoticeDto> noticeList = noticeService.getNoticeList(paging);
+		int total = noticeService.getTotal();
+		paging.setTotal(total);
+		
 		List<NoticeDto> firstList = noticeService.getFirstList();
+		List<NoticeDto> noticeList = noticeService.getNoticeList(paging);
 		
 		model.addAttribute("pageName", "notice_list");
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("firstList", firstList);
-    	/*model.addAttribute("p", paging);*/
-    	/*model.addAttribute("totalCount", totalCount);*/
+    	model.addAttribute("p", paging);
     	
-    	/*System.out.println("컨트롤러 최종 값"+ list.toString());
-    	System.out.println("페이징 : " + paging.toString());
-		System.out.println("게시글 총갯수 : " + totalCount);*/
+    	System.out.println("noticeList 컨트롤러 최종 값"+ noticeList.toString());
+    	System.out.println("noticeList 페이징 : " + paging.toString());
+		System.out.println("noticeList 게시글 총갯수 : " + paging.getTotal());
 		
 		return "notice_list.user";
 	}
 	
-	/*@RequestMapping("/notice_view")
-	public String gowith_detail(int g_Num,Principal principal, Model model) {
+	@RequestMapping("/notice_view")
+	public String getView(int no_seq, Model model) {
 		
-		model.addAttribute("tile","tile");
-		String m_Email = principal.getName();
-		MemberDTO dto = new MemberDTO();
-		dto = tservice.mypageMember(m_Email);
-		model.addAttribute("dto",dto);
+		model.addAttribute("notice_view","notice_view");
+		
+		NoticeDto noticeDto=noticeService.getView(no_seq);
+		model.addAttribute("noticeDto",noticeDto);
 		
 		// 조회증가&상세조회
-		GowithDTO gowithDTO = gowithService.selectGowith(g_Num);
-		List<go_ReplyDTO> reply = gowithService.replylist(g_Num);
-		System.out.println("images : " + gowithDTO.getGi_Images().toString());
-		System.out.println("디테일 " + gowithDTO.toString());
-		model.addAttribute("dto1", gowithDTO);
-		model.addAttribute("reply", reply);
+		System.out.println("images : " + noticeDto.getNi_names().toString());
+		System.out.println("디테일 " + noticeDto.toString());
 
-		return "gowith.gowith_detail";
-	}*/
+		return "notice_view.user";
+	}
 
 }
