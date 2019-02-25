@@ -45,14 +45,12 @@ $(document).ready(function() {
 							login();
 						}
 					 if (data == "idfail") {
-						$('#alertmsg').text('일치하는 정보가 없습니다.');
-						$('#alertmsg2').text('이메일 또는 비밀번호를 다시 확인하세요');
+						$('#alertmsg').text('일치하는 이메일 정보가 없습니다.');
 						$('#au_pwd').val("");
 	                    $('#alert_pop').modal();
 						} 
 					if (data == "passfail") {
-						$('#alertmsg').text('일치하는 정보가 없습니다.');
-						$('#alertmsg2').text('이메일 또는 비밀번호를 다시 확인하세요');
+						$('#alertmsg').text('비밀번호가 일치하지 않습니다.');
 						$('#au_pwd').val("");
 						$('#alert_pop').modal();
 						}  

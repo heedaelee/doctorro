@@ -28,7 +28,7 @@
                 <div class="modal-body">
                     <div class="modal_con">
                         <p id="alertmsg">가입되지 않은 정보입니다.</p>
-                        <p id="alertmsg2">다시 확인해 주세요</p>
+                        <!-- <p id="alertmsg2">다시 확인해 주세요</p> -->
                     </div>
                     <div class="pop_bottom_btn">
                         <!-- 확인버튼 -->

@@ -29,8 +29,11 @@
 		        <div class="inner_wrap">
 			        <h2 class="title">
 			        	<c:choose>
-			        		<c:when test="${pageName eq'notice_list'}">
+			        		<c:when test="${pageName eq'notice_list'||pageName eq'notice_view'}">
 			        			공지사항
+			        		</c:when>
+			        		<c:when test="${pageName eq'event_list'||pageName eq'event_view'}">
+			        			이벤트
 			        		</c:when>
 			        		<c:otherwise>
 			        			건강정보
@@ -46,10 +49,16 @@
 		    <%--// header web --%>
 		    <%-- header m --%>
 		   <c:choose>
-		   	<c:when test="${pageName eq'notice_list'}">
+		   	<c:when test="${pageName eq'notice_list'||pageName eq'notice_view'}">
 		   		 <div class="m_header visible-xs hidden-sm">
 			        <button class="btn_back">back</button>
 			        <h2 class="title">공지사항</h2>
+			    </div>
+		   	</c:when>
+		   	<c:when test="${pageName eq'event_list'||pageName eq'event_view'}">
+		   		 <div class="m_header visible-xs hidden-sm">
+			        <button class="btn_back">back</button>
+			        <h2 class="title">이벤트</h2>
 			    </div>
 		   	</c:when>
 		   	<c:otherwise>
@@ -65,7 +74,7 @@
 		    <div class="container">
 		  <c:choose>
 			  	<c:when test="${pageName eq'health'||pageName eq'disease'||pageName eq'drug'||pageName eq'drug'
-			  	||pageName eq'notice_list'}">
+			  	||pageName eq'notice_list'||pageName eq'event_list'||pageName eq'event_view'}">
 			    	 <div class="sub_nav">
 		                <ul>
 		                	<c:choose>
@@ -98,10 +107,16 @@
 					            <c:when test="${pageName eq 'notice_list'}">
 					            	<li><a href="#">알림</a></li>
                 					<li class="on"><a href="#">공지사항</a></li>
+					            </c:when>
+					            <c:when test="${pageName eq 'event_list'||pageName eq 'event_view'}">
+					            	 <li class="on"><a href="#">이벤트</a></li>
 					            </c:when>     
 			               </c:choose>  
 		                </ul>
 			        </div>
+			      </c:when>
+			     <c:when test="${pageName eq'health'||pageName eq'disease'||pageName eq'drug'||pageName eq'drug'
+			  	||pageName eq'notice_list'||pageName eq'notice_view'||pageName eq'event_list'}">
 			        <div class="breadcrumb_wrap hidden-xs">
 			          <ul>
 			            <li><a href="${pageContext.request.contextPath}/user/index">Home</a></li>
@@ -117,12 +132,15 @@
 		                		 <li><a href="${pageContext.request.contextPath}/user/drug">제약정보</a></li>
 			           			 <li>제약정보</li>
 			                 </c:if>
-			                 <c:if test="${pageName eq'notice_list'}">
+			                 <c:if test="${pageName eq'notice_list'||pageName eq'notice_list'}">
             					<li><a href="${pageContext.request.contextPath}/user/notice_list">공지사항</a></li>
+			                 </c:if>
+			                 <c:if test="${pageName eq'event_list'||pageName eq'event_view'}">
+            					<li>이벤트</li>
 			                 </c:if>
 			          </ul>
 			        </div>
-			     </c:when>
+			       </c:when>
 		 </c:choose>
 	</c:otherwise>
 </c:choose>

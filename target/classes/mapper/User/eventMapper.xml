@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doctorro.user.event.dao.EventDao">
+
+	<select id="getEventList"
+		parameterType="com.doctorro.common.PagingDTO"
+		resultType="com.doctorro.user.event.dto.EventDto">
+		select ev_seq, au_seq,ei_seq, t_seq, ev_title,ev_subTitle, ev_content,
+		DATE_FORMAT(ev_regdate,'%Y-%m-%d') no_regdate, DATE_FORMAT(ev_from,'%Y-%m-%d') ev_from,DATE_FORMAT(ev_to,'%Y-%m-%d') ev_to, ev_hit,ev_isIng_YN
+		from event
+		order by ev_isIng_YN <![CDATA[<>'Y']]> ,ev_seq desc
+		limit
+		#{index},#{listCnt}
+	</select>
+
+	<select id="getTotal" resultType="int">
+		select count(*) from event
+	</select>
+ 
+	<select id="getView" parameterType="int"
+		resultType="com.doctorro.user.event.dto.EventDto">
+		select ev_seq, au_seq,ei_seq, t_seq, ev_title,ev_subTitle, ev_content,
+		DATE_FORMAT(ev_regdate,'%Y-%m-%d') ev_regdate,DATE_FORMAT(ev_from,'%Y-%m-%d') ev_from,DATE_FORMAT(ev_to,'%Y-%m-%d') ev_to, ev_hit,ev_isIng_YN
+		from event
+		where ev_seq=#{ev_seq}
+		order by ev_seq desc
+	</select>
+	
+	<select id="selectImg" parameterType="integer"
+		resultType="java.lang.String">
+		select ei_name from event_img where ev_seq=#{ev_seq} order by ei_seq desc
+	</select>
+	
+	<update id="updateHit" parameterType="int">
+		update event
+		set ev_hit =
+		ev_hit+1
+		where ev_seq=#{ev_seq}
+	</update>
+</mapper>

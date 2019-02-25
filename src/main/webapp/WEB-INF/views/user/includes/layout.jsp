@@ -23,7 +23,7 @@
             <%--//content include--%>
             
 <c:if test="${pageName ne'login'&& pageName ne'password'&& pageName ne'join'
-				&& pageName ne'notice_list'}">
+			&& pageName ne'notice_list'&& pageName ne'notice_view'}">
     <!--login, password,notice 제외한 헤더.jsp 의 <div class=container>의 끝  -->
     </div>
     <!--// container -->

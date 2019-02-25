@@ -1,5 +1,7 @@
 package com.doctorro.user.notice.dto;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -13,5 +15,14 @@ public class NoticeDto {
 	private String no_content;
 	private String no_regdate;
 	private String no_isFirst;
-	private String hit;
+	private int no_hit;
+	
+	//사진
+	private String ni_name;
+	private List<String> ni_names;
+	
+	//태그
+	private String tage_name;
+	private List<String> tage_names;
+	
 }

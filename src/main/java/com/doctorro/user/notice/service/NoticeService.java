@@ -22,10 +22,30 @@ public class NoticeService {
 		return firstList;
 	}
 	
-	public List<NoticeDto> getNoticeList(PagingDTO dto) {
+	public List<NoticeDto> getNoticeList(PagingDTO paging) {
 		NoticeDao dao =sqlsession.getMapper(NoticeDao.class);
-		List<NoticeDto> noticeList= dao.getNoticeList();
+		List<NoticeDto> noticeList= dao.getNoticeList(paging);
 		return noticeList;
+	}
+	public int getTotal() {
+		NoticeDao dao =sqlsession.getMapper(NoticeDao.class);
+		int total =  dao.getTotal();
+		return total;
+	}
+	
+	public NoticeDto getView(int no_seq) {
+		NoticeDao dao =sqlsession.getMapper(NoticeDao.class);
+		NoticeDto noticeDto = dao.getView(no_seq);//게시물 선택
+		List<String> imgList = dao.selectImg(no_seq); //게시물 따른 사진 선택
+		System.out.println(imgList.toString());
+		//리스트로 다중 row 받기
+		noticeDto.setNi_names(imgList);
+		dao.updateHit(no_seq);//조회수
+		
+		List<String> tageList = dao.getTag(noticeDto.getT_seq());//태그 가져오기
+		noticeDto.setTage_names(tageList);
+		
+		return noticeDto;
 	}
 	
 }

@@ -40,8 +40,12 @@
 	         <put-attribute name="footer" value="/WEB-INF/views/{2}/includes/footer.jsp" />
 	         <put-attribute name="content" value="/WEB-INF/views/common/notice/notice_{1}.jsp" />
 	     </definition>
-	     
-	     
+	     <definition name="event_*.*" template="/WEB-INF/views/{2}/includes/layout.jsp" >
+	     	 <put-attribute name="resource"  value="/WEB-INF/views/{2}/includes/resource.jsp" />
+	     	 <put-attribute name="header"  value="/WEB-INF/views/{2}/includes/header.jsp" />
+	         <put-attribute name="footer" value="/WEB-INF/views/{2}/includes/footer.jsp" />
+	         <put-attribute name="content" value="/WEB-INF/views/common/event/event_{1}.jsp" />
+	     </definition>
 	     
 	     <!--일반인/의사 페이지 완전 나뉘는것 ex)doctor.index.index --> <!--의사/일반인 리소스 layout 별로 나뉨  -->
 	     <definition name="*.*.*" template="/WEB-INF/views/{1}/includes/layout.jsp" >

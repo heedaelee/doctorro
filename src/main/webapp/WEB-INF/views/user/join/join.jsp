@@ -8,7 +8,18 @@ $(document).ready(function(){
 var pwdRule=/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
 //이메일이 적합한지 검사할 정규식
 var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-
+에러 여기서부터 
+if($('#check06')is(":checked")){
+	var Now = new Date();
+	var NowTime = Now.getFullYear();
+	NowTime += '-' + Now.getMonth() + 1 ;
+	NowTime += '-' + Now.getDate();
+	NowTime += ' ' + Now.getHours();
+	NowTime += ':' + Now.getMinutes();
+	NowTime += ':' + Now.getSeconds();
+	
+	alert(NowTime);
+}
 
 $('#submit').click(function () {
 	console.log('제출');
@@ -21,7 +32,7 @@ $('#submit').click(function () {
         $('#m_nick').focus();
         return false;
     }
-    if($('#m_nick').val() === "" || $('#m_nick').val().length>10 ){
+    if($('#m_nick').val() == "" || $('#m_nick').val().length>10 ){
         $('#alertmsg').text('최대10자의 닉네임을 입력해주세요');
         $('#alert_pop').modal();
         $('#m_nick').focus();
@@ -62,32 +73,24 @@ $('#submit').click(function () {
                     $('#alertmsg').text('회원가입이 완료되었습니다.');
                     $('#alertmsg + p').empty();
                     $('#alert_pop').modal();
-                    $('#au_pwd').val("");
-                    $('#au_pwd2').val("");
                     return false;
 				}
                 if(data=="DoubleNick"){
-                    $('#alertmsg').text('이미 닉네임이 있습니다.');
+                    $('#alertmsg').text('이미 사용중인 닉네임 입니다.');
                     $('#alert_pop').modal();
                     $('#m_nick').focus();
-                    $('#au_pwd').val("");
-                    $('#au_pwd2').val("");
                     return false;
                 }
                 if(data=="DoubleEmail"){
-                    $('#alertmsg').text('이미 이메일이 있습니다.');
+                    $('#alertmsg').text('이미 가입된 이메일입니다.');
                     $('#alert_pop').modal();
                     $('#au_email').focus();
-                    $('#au_pwd').val("");
-                    $('#au_pwd2').val("");
                     return false;
                 }
 				else{
                     $('#alertmsg').text('회원가입에 실패하였습니다');
                     $('#alert_pop').modal();
                     $('#m_nick').focus();
-                    $('#au_pwd').val("");
-                    $('#au_pwd2').val("");
                     return false;
                 	}
             	},
@@ -95,8 +98,6 @@ $('#submit').click(function () {
                 $('#alertmsg').text('회원가입에 실패하였습니다');
                 $('#alert_pop').modal();
                 $('#m_nick').focus();
-                $('#au_pwd').val("");
-                $('#au_pwd2').val("");
                console.log(error);
                console.log(error.status);
             }
@@ -140,7 +141,7 @@ $('#submit').click(function () {
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="label_txt must">비밀번호 확인</label>
-                    <input class="form-control" type="password" id="au_pwd2" placeholder="영문자 및 숫자 포함 8자 이상" data-match="#au_pwd" data-match-error="비밀번호가 일치하지 않습니다.다시확인해 주세요.">
+                    <input class="form-control" type="password" id="au_pwd2" placeholder="영문자 및 숫자 포함 8자 이상" data-match="#au_pwd" data-match-error="비밀번호가 일치하지 않습니다.">
                     <div class="help-block with-errors"></div>
                 </div>
                 <div class="agree_chk">
@@ -179,10 +180,12 @@ $('#submit').click(function () {
                     <div class="form-group check_box">
                         <input class="form-control" name="m_mPush" type="checkbox" id="check06" name="m_mPush" value="Y">
                         <label for="check06"  class="">푸시</label>
+                        <input class="form-control" name="m_mPush" type="hidden" id="m_mPushdate" name="m_mPushdate">
                     </div>
                     <div class="form-group check_box">
                         <input class="form-control" type="checkbox" name="m_mMail" id="check07" name="m_mMail" value="Y">
                         <label for="check07" class="">이메일</label>
+                        <input class="form-control" name="m_mPush" type="hidden" id="m_mMaildate" name="m_mMaildate">
                     </div>
                 </div>
                 <div class="bottom_btn">

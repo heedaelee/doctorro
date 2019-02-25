@@ -29,8 +29,10 @@ public class UserHealthController {
     @RequestMapping("health")
     public String userHealth(Model model, Principal principal, HttpServletRequest request,PagingDTO paging ) {
     	System.out.println("유저헬스 컨트롤탐");
-    	
+    	//시작페이지 DB에 던질땐 0인데, api연결시 임시로 1로 편하게 수정
     	int page=1;
+    	//원래 DB에 던질떈 1페이지부터가 mysql limit땜에 index - 0으로 시작하는데, 
+    	//이건 api연결시 현재 페이지를 바로 던질수 있게,+1해서 1페이지로 던짐 
     	int realPageNumber=paging.getIndex()+1;
     	
     	//api 자료 total list
