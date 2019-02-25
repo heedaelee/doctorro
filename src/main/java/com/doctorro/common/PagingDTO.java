@@ -25,14 +25,7 @@ public class PagingDTO {
   
   public PagingDTO() {}
   
-/*  //start last mapper에 던진다
-  public int getStart() {
-      return index*listCnt+1;
-  }
-  public int getLast() {
-      return (index*listCnt)+listCnt;
-  }
-*/  
+
   public int getPageLastNum() {
       int remainListCnt = total-listCnt*(pageStartNum-1);
       int remainPageCnt = remainListCnt/listCnt;
